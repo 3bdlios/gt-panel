@@ -9,7 +9,7 @@ from Components.Pixmap import Pixmap
 from Components.ActionMap import ActionMap
 from Components.MultiContent import MultiContentEntryText
 from Plugins.Plugin import PluginDescriptor
-from enigma import getDesktop, eListboxPythonMultiContent, gFont, RT_VALIGN_CENTER
+from enigma import getDesktop, eListboxPythonMultiContent, gFont, RT_VALIGN_CENTER, quitMainloop
 from twisted.internet.threads import deferToThread
 from . import core
 
@@ -47,7 +47,7 @@ class GTPanel(Screen):
     def __init__(self,session):
         self.skin,self.panel_scale=layout(getDesktop(0).size().width())
         Screen.__init__(self,session)
-        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.1.1',
+        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.1.2',
                 'connection':'GitHub catalog', 'rail_title':'GT ENIGMA2', 'rail_copy':'DOWNLOADS\n& REPAIRS\n\nOne place for\nyour receiver.',
                 'device':'Checking device…','section':'Explore your panel','status':'Loading the GitHub catalog…',
                 'detail_tag':'BUILT FOR YOUR RECEIVER','detail_title':'Choose a category','detail':'Review compatibility and changes before installing.\n\nBackups are created before files are replaced.',
@@ -151,10 +151,14 @@ class GTPanel(Screen):
         self.busy=True;self['status'].setText('Creating backup and installing verified files…')
         deferToThread(core.install,item,payload,True).addCallbacks(self.installed,self.error)
     def installed(self,path):
-        self.busy=False
+        self.busy=True
         if self.alive:
-            self['status'].setText('Installed successfully  •  Backup saved')
-            self.session.open(MessageBox,'Installation completed. Backup:\n'+path+'\nRestart the GUI manually when ready.',MessageBox.TYPE_INFO)
+            self['status'].setText('Installed successfully  •  Restarting the GUI…')
+            self.session.openWithCallback(self.restart_gui,MessageBox,
+                'Installation completed. Backup:\n'+path+'\nThe GUI will restart automatically in 5 seconds.',
+                MessageBox.TYPE_INFO,timeout=5,close_on_any_key=False)
+    def restart_gui(self,answer=None):
+        if self.alive:quitMainloop(3)
     def backups(self):
         if self.busy:return
         self.level='backups';self.rows=sorted([os.path.join(core.STATE,n) for n in os.listdir(core.STATE) if os.path.isfile(os.path.join(core.STATE,n,'journal.json'))],reverse=True) if os.path.isdir(core.STATE) else []
