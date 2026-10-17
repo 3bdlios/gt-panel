@@ -84,9 +84,9 @@
       "id": "gtcombo-frontpanel",
       "title": "Front display: permanent clock",
       "category": "Fixes",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Display the local 24-hour clock during viewing and standby.",
-      "warning": "Controls GPIOAO_2/3 in a separate process. Requires manual GUI restart. Permanent-clock variant pending receiver test.",
+      "warning": "Controls GPIOAO_2/3 in a separate process. Requires manual GUI restart. Reviewed local docstring variant accepted; hardware driver unchanged.",
       "compatibility": {
         "model": [
           "GTMedia GT Combo"
@@ -101,7 +101,7 @@
           "3.14"
         ]
       },
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-frontpanel-fix_1.0.0_all.ipk",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-frontpanel-fix_1.0.1_all.ipk",
       "checks": [
         {
           "type": "sha256",
@@ -131,7 +131,8 @@
           "sha256": "7faa0fbc93925d9a848e7d666eb70a66e096d01076b94580b6fac9637e7ef685",
           "before": [
             null,
-            "7faa0fbc93925d9a848e7d666eb70a66e096d01076b94580b6fac9637e7ef685"
+            "7faa0fbc93925d9a848e7d666eb70a66e096d01076b94580b6fac9637e7ef685",
+            "4e9ee5624eb10a76e6ed50d27d51447bd379e5b59e19b81ee4d7ab9f27accf13"
           ],
           "mode": 420
         },
@@ -152,7 +153,7 @@
         "/usr/lib/gtcombo/frontpanel/tm1637.py",
         "/usr/lib/gtcombo/frontpanel/worker.py"
       ],
-      "sha256": "6e7afe6e35779ba67ca0e61c6c90613552233c25037a27e3bd6b7e641cc50ec5",
+      "sha256": "156ef65614b3c5f7874d878f850029bafc028e35d2e45c7bb2b26f3ad973d568",
       "size": 3838,
       "format": "ipk"
     },
