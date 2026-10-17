@@ -77,6 +77,7 @@ def validate(doc):
         if not re.match(r'^[a-z0-9][a-z0-9-]{0,63}$', i.get('id','')) or i['id'] in ids: raise SafetyError('Invalid/duplicate item id')
         ids.add(i['id'])
         if i.get('category') not in CATEGORIES: raise SafetyError('Invalid category')
+        if i.get('format', 'tar.gz') not in ('tar.gz', 'ipk'): raise SafetyError('Invalid package format')
         if not re.match(r'^[0-9a-f]{64}$', i.get('sha256','')): raise SafetyError('Missing SHA256')
         if type(i.get('size')) is not int or not 0 < i['size'] <= 16*1024*1024: raise SafetyError('Invalid size')
         if not isinstance(i.get('files'), list) or not 0 < len(i['files']) <= 200: raise SafetyError('Invalid file inventory')
@@ -120,6 +121,15 @@ def prepare(item, repo, device):
     try:
         archive = os.path.join(tmp, 'bundle.tar.gz')
         with open(archive,'wb') as f: f.write(data)
+        if item.get('format') == 'ipk':
+            from . import ipk
+            payload = ipk.payload(data, set(item['files']))
+            for path in payload:
+                safe_path(path, item.get('action') == 'repair')
+            repairs.preflight(item, payload)
+            return payload
+        if item.get('format', 'tar.gz') != 'tar.gz':
+            raise SafetyError('Unsupported package format')
         payload = {}
         with tarfile.open(archive,'r:gz') as tf:
             total = 0

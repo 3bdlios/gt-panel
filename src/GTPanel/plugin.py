@@ -47,11 +47,11 @@ class GTPanel(Screen):
     def __init__(self,session):
         self.skin,self.scale=layout(getDesktop(0).size().width())
         Screen.__init__(self,session)
-        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.0',
+        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.1',
                 'connection':'GitHub catalog', 'rail_title':'GT ENIGMA2', 'rail_copy':'DOWNLOADS\n& REPAIRS\n\nOne place for\nyour receiver.',
                 'device':'Checking device…','section':'Explore your panel','status':'Loading the GitHub catalog…',
                 'detail_tag':'BUILT FOR YOUR RECEIVER','detail_title':'Choose a category','detail':'Review compatibility and changes before installing.\n\nBackups are created before files are replaced.',
-                'detail_hint':'OK to explore', 'key_red':'Back / Close', 'key_green':'OK / Green: Review', 'key_blue':'Blue: Backups & restore'}
+                'detail_hint':'OK to explore', 'key_red':'Back / Close', 'key_green':'OK / Green: Install', 'key_blue':'Blue: Backups & restore'}
         for key,value in labels.items():self[key]=Label(value)
         self['icon']=Pixmap()
         self['list']=MenuList([],content=eListboxPythonMultiContent)
@@ -110,7 +110,7 @@ class GTPanel(Screen):
             self['detail_tag'].setText('COMPATIBLE' if ok else 'CHECK COMPATIBILITY')
             self['detail_title'].setText(i.get('title',i['id']))
             self['detail'].setText('Version %s\n\n%s'%(i.get('version','?'),i.get('description','')[:350]))
-            self['detail_hint'].setText('Review before installing')
+            self['detail_hint'].setText('OK: Download and install')
         else:
             self['detail_tag'].setText('RECOVERY');self['detail_title'].setText('Restore previous files')
             self['detail'].setText('The selected backup restores the files from that installation. Later changes to those files will be overwritten.')
@@ -136,8 +136,7 @@ class GTPanel(Screen):
             try:
                 device=core.facts()
                 if not core.compatible(i,device):raise core.SafetyError('Incompatible item: exact model/image/version/Python match required')
-                text='%s\n%s\nVersion: %s\nFiles:\n%s\n\nDownload and verify for review? No installation yet.'%(i.get('title',i['id']),i.get('description',''),i.get('version','?'),'\n'.join(i['files']))
-                self.session.openWithCallback(lambda yes:self.download(i,device,yes),MessageBox,text,MessageBox.TYPE_YESNO,default=False)
+                self.download(i,device,True)
             except Exception as e:self.error(e)
     def download(self,item,device,yes):
         if yes is not True:return
@@ -146,9 +145,7 @@ class GTPanel(Screen):
     def review(self,item,payload):
         self.busy=False
         if self.alive:
-            warning=item.get('warning','Installed code may execute when you next use it or restart the GUI.')
-            text='Verified download and compatibility.\nInstall %s?\n%s\n\n%s\n\nExisting files will be backed up. No automatic reboot.'%(item.get('title',item['id']),'\n'.join(sorted(payload)),warning)
-            self.session.openWithCallback(lambda yes:self.apply(item,payload,yes),MessageBox,text,MessageBox.TYPE_YESNO,default=False)
+            self.apply(item,payload,True)
     def apply(self,item,payload,yes):
         if yes is not True:return
         self.busy=True;self['status'].setText('Creating backup and installing verified files…')

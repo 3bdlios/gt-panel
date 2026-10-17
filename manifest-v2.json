@@ -22,7 +22,7 @@
           "3.14"
         ]
       },
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gtcombo-android-v1.tar.gz",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gtcombo-android-fix_1.0.0_all.ipk",
       "checks": [
         {
           "type": "sha256",
@@ -76,8 +76,85 @@
         "/usr/lib/gtcombo/android-boot.py",
         "/usr/lib/gtcombo/android-once.py"
       ],
-      "sha256": "3eb58bea7d378a6c10e492d0e98e0b8964860d4b3bcdfc3a389b5f99a1c869a8",
-      "size": 3284
+      "sha256": "5179af98413e4e8707dbf38d1dc24b7981c6a4cd85b7a8553fd37d8a86e2a5b0",
+      "size": 3718,
+      "format": "ipk"
+    },
+    {
+      "id": "gtcombo-frontpanel",
+      "title": "Front display: permanent clock",
+      "category": "Fixes",
+      "version": "1.0.0",
+      "description": "Display the local 24-hour clock during viewing and standby.",
+      "warning": "Controls GPIOAO_2/3 in a separate process. Requires manual GUI restart. Permanent-clock variant pending receiver test.",
+      "compatibility": {
+        "model": [
+          "GTMedia GT Combo"
+        ],
+        "image": [
+          "openatv"
+        ],
+        "version": [
+          "8.0.1.20261007"
+        ],
+        "python": [
+          "3.14"
+        ]
+      },
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gtcombo-frontpanel-fix_1.0.0_all.ipk",
+      "checks": [
+        {
+          "type": "sha256",
+          "path": "/dev/bootloader",
+          "bytes": 4194304,
+          "sha256": "b6f01df81e74a83a52179b7cfdbaf5466833dae47c5b9a8202d9d66861ead36c"
+        }
+      ],
+      "targets": {
+        "/usr/lib/gtcombo/frontpanel/tm1637.py": {
+          "sha256": "4e62bc32189668c20ae7b008162d6c0287e3095f11d972e20c24351694325fcd",
+          "before": [
+            null,
+            "4e62bc32189668c20ae7b008162d6c0287e3095f11d972e20c24351694325fcd"
+          ],
+          "mode": 420
+        },
+        "/usr/lib/gtcombo/frontpanel/worker.py": {
+          "sha256": "7c2bad8714bdb21ce6b5fe17f937991129399d323a1e2976d8e46747080c3e40",
+          "before": [
+            null,
+            "7c2bad8714bdb21ce6b5fe17f937991129399d323a1e2976d8e46747080c3e40"
+          ],
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTFrontPanel/plugin.py": {
+          "sha256": "7faa0fbc93925d9a848e7d666eb70a66e096d01076b94580b6fac9637e7ef685",
+          "before": [
+            null,
+            "7faa0fbc93925d9a848e7d666eb70a66e096d01076b94580b6fac9637e7ef685"
+          ],
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTFrontPanel/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "before": [
+            null,
+            "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          ],
+          "mode": 420
+        }
+      },
+      "action": "repair",
+      "min_engine": 2,
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTFrontPanel/__init__.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTFrontPanel/plugin.py",
+        "/usr/lib/gtcombo/frontpanel/tm1637.py",
+        "/usr/lib/gtcombo/frontpanel/worker.py"
+      ],
+      "sha256": "6e7afe6e35779ba67ca0e61c6c90613552233c25037a27e3bd6b7e641cc50ec5",
+      "size": 3838,
+      "format": "ipk"
     }
   ]
 }
