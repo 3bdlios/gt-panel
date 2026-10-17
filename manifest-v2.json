@@ -22,7 +22,7 @@
           "3.14"
         ]
       },
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gtcombo-android-fix_1.0.0_all.ipk",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-android-fix_1.0.0_all.ipk",
       "checks": [
         {
           "type": "sha256",
@@ -101,7 +101,7 @@
           "3.14"
         ]
       },
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gtcombo-frontpanel-fix_1.0.0_all.ipk",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-frontpanel-fix_1.0.0_all.ipk",
       "checks": [
         {
           "type": "sha256",
