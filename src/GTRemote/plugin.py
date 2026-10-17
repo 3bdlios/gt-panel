@@ -34,7 +34,7 @@ def main(session,**kwargs):
                 urls.append('http://'+socket.inet_ntoa(data[20:24])+':'+str(settings['port']))
         except OSError:pass
     session.open(MessageBox,'GT Remote\n\n'+('\n'.join(urls) or 'No network address yet.')+
-        '\n\nPhone pairing code: '+settings['pin']+'\n\nOpen the address in Safari or Chrome.\nUses OpenWebif on port 80.',MessageBox.TYPE_INFO)
+        '\n\nOpen the address in Safari or Chrome.\nNo pairing code required.\nUses OpenWebif on port 80.',MessageBox.TYPE_INFO)
 
 def Plugins(**kwargs):
     return [PluginDescriptor(name='GT Remote',description='Standalone mobile remote · port 8088',where=PluginDescriptor.WHERE_PLUGINMENU,fnc=main),

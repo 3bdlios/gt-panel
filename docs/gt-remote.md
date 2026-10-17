@@ -1,10 +1,10 @@
-# GT Remote 1.0.0
+# GT Remote 1.0.1
 
 Standalone, touch-friendly OpenWebif remote for iPhone and Android browsers.
 Install **GT Remote - Mobile web remote** from **GT Panel → Plugins**.
 After the GUI restarts, open **GT Remote** in the receiver's plugin menu.
-It displays the local URL (port **8088**) and the six-digit pairing code.
-Open that URL on a phone on the same LAN and enter the code.
+It displays the local URL (port **8088**) without a pairing code.
+Open that URL on a phone on the same LAN to use the remote directly.
 
 All buttons use the installed OpenWebif remote key codes. Hold a button for
 550 ms to send a long press. The text, message and standby/wakeup controls
@@ -13,8 +13,7 @@ if enabled, remains in effect. The independent web process starts with Enigma2
 and exits when Enigma2 exits. It does not change network configuration.
 
 Optional screenshots capture menus/OSD, not channel video. There is no periodic
-screenshot polling. Pairing expires after 24 hours; the receiver keeps its code
-in `/var/lib/gt-remote/config.json` with owner-only permissions. The page is for
+screenshot polling. The page is for
 local-network use, not direct Internet exposure.
 
 Build with `python3 tools/build_remote.py`. Validate with

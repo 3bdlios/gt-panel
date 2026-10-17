@@ -1,17 +1,11 @@
 #!/usr/bin/python3
 """Small LAN web remote; commands are forwarded to OpenWebif, never a shell."""
 import argparse
-import base64
-import hashlib
-import hmac
-from http import cookies
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
 from pathlib import Path
-import secrets
 import threading
-import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -29,26 +23,11 @@ def config(path=STATE):
     if path.exists():
         return json.loads(path.read_text())
     path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-    data = {'port':8088, 'pin':str(secrets.randbelow(900000)+100000), 'secret':secrets.token_hex(32)}
+    data = {'port':8088}
     fd = os.open(str(path), os.O_WRONLY|os.O_CREAT|os.O_EXCL, 0o600)
     with os.fdopen(fd,'w') as target:
         json.dump(data,target)
     return data
-
-
-def session_token(settings, timestamp=None):
-    timestamp = str(int(time.time()) if timestamp is None else timestamp)
-    signature = hmac.new(settings['secret'].encode(),timestamp.encode(),hashlib.sha256).hexdigest()
-    return timestamp+'.'+signature
-
-
-def valid_token(settings, token):
-    try:
-        stamp, signature = token.split('.',1)
-        age = time.time()-int(stamp)
-        return -300 <= age <= 86400 and hmac.compare_digest(session_token(settings,stamp),token)
-    except (ValueError,TypeError):
-        return False
 
 
 class RemoteServer(ThreadingHTTPServer):
@@ -57,8 +36,6 @@ class RemoteServer(ThreadingHTTPServer):
 
     def __init__(self,address,settings):
         self.settings=settings
-        self.attempts={}
-        self.lock=threading.Lock()
         self.key_lock=threading.Lock()
         super().__init__(address,Handler)
 
@@ -84,12 +61,6 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         try:self.wfile.write(data)
         except (BrokenPipeError,ConnectionResetError):pass
-
-    def paired(self):
-        jar=cookies.SimpleCookie()
-        try:jar.load(self.headers.get('Cookie',''))
-        except cookies.CookieError:return False
-        return 'gtremote' in jar and valid_token(self.server.settings,jar['gtremote'].value)
 
     def local_origin(self):
         origin=self.headers.get('Origin')
@@ -120,8 +91,7 @@ class Handler(BaseHTTPRequestHandler):
         if route in assets:
             name,kind=assets[route];return self.send(200,(ROOT/'web'/name).read_bytes(),kind)
         if route=='/api/status':
-            return self.send(200,{'paired':self.paired(),'name':'GT Remote','port':self.server.settings['port']})
-        if not self.paired():return self.send(401,{'error':'Pair this phone first'})
+            return self.send(200,{'ready':True,'name':'GT Remote','port':self.server.settings['port']})
         if route=='/api/screenshot':return self.upstream('/grab?format=jpg&mode=osd&r=720')
         self.send(404,{'error':'Not found'})
 
@@ -134,18 +104,6 @@ class Handler(BaseHTTPRequestHandler):
             if not isinstance(data,dict):raise ValueError()
         except (ValueError,UnicodeError):return self.send(400,{'error':'Invalid request'})
         route=urllib.parse.urlparse(self.path).path
-        if route=='/api/pair':
-            ip=self.client_address[0]
-            with self.server.lock:
-                now=time.monotonic()
-                self.server.attempts={k:[t for t in values if now-t<60] for k,values in self.server.attempts.items() if values and now-values[-1]<60}
-                tries=self.server.attempts.setdefault(ip,[])
-                if len(tries)>=5:return self.send(429,{'error':'Wait one minute before trying again'})
-                tries.append(now)
-                if not hmac.compare_digest(str(data.get('pin','')),self.server.settings['pin']):return self.send(403,{'error':'Incorrect pairing code'})
-                self.server.attempts.pop(ip,None)
-            return self.send(200,{'result':True},extra={'Set-Cookie':'gtremote='+session_token(self.server.settings)+'; HttpOnly; SameSite=Strict; Path=/; Max-Age=86400'})
-        if not self.paired():return self.send(401,{'error':'Pair this phone first'})
         if route=='/api/key':
             code=data.get('code')
             if type(code) is not int or code not in KEYS:return self.send(400,{'error':'Unknown remote key'})
