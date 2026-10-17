@@ -1,0 +1,78 @@
+{
+  "id": "gtcombo-android-both",
+  "title": "Android restart & boot menu repair",
+  "category": "Fixes",
+  "version": "1.0.0",
+  "description": "Fix both Restart to Android and Android selection in the startup menu for the reviewed GT MEDIA COMBO image. No automatic reboot.",
+  "warning": "Installs boot helpers on the USB root. Later, choosing Android explicitly backs up and writes the internal one-shot boot flag. Keep power connected during that write. This combined installer still needs a receiver acceptance test.",
+  "compatibility": {
+    "model": [
+      "GTMedia GT Combo"
+    ],
+    "image": [
+      "openatv"
+    ],
+    "version": [
+      "8.0.1.20261007"
+    ],
+    "python": [
+      "3.14"
+    ]
+  },
+  "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gtcombo-android-v1.tar.gz",
+  "checks": [
+    {
+      "type": "sha256",
+      "path": "/dev/bootloader",
+      "bytes": 4194304,
+      "sha256": "b6f01df81e74a83a52179b7cfdbaf5466833dae47c5b9a8202d9d66861ead36c"
+    },
+    {
+      "type": "uboot_env",
+      "path": "/dev/env",
+      "bytes": 65536,
+      "data_offset": 4,
+      "byteorder": "little",
+      "values": {
+        "bootcmd": "if test ${bootfromnand} = 1; then setenv bootfromnand 0; saveenv; else run bootfromsd; run bootfromusb; run bootfromemmc; fi; run storeboot",
+        "bootfromnand": "0"
+      }
+    }
+  ],
+  "targets": {
+    "/usr/lib/gtcombo/android-once.py": {
+      "sha256": "2c4a6cc1fb58ab23035b07296a56801370a41d0ee7b8d2404bf539fd2eeef8cb",
+      "before": [
+        null,
+        "2c4a6cc1fb58ab23035b07296a56801370a41d0ee7b8d2404bf539fd2eeef8cb"
+      ],
+      "mode": 493
+    },
+    "/usr/lib/gtcombo/android-boot.py": {
+      "sha256": "8e5467193b40b58b7b477bb293733fa67c80abf7ab0d9b1d5b3ef1560a1298a3",
+      "before": [
+        "1c09e5d5a586c83512709a7f844a4367e9d412169300e089a5bf9278ea4ec0a2",
+        "67cf7fc3b17a8b8859cde3e086e9411c952c64c465dbab29ae66086fc1a3697e",
+        "8e5467193b40b58b7b477bb293733fa67c80abf7ab0d9b1d5b3ef1560a1298a3"
+      ],
+      "mode": 493
+    },
+    "/etc/init.d/gtcombo-boot-menu": {
+      "sha256": "a873aec928f117b29d05d4fecdf1464467a7e64cec092810cb83d76b02b91165",
+      "before": [
+        "a873aec928f117b29d05d4fecdf1464467a7e64cec092810cb83d76b02b91165",
+        "2700108bf51474aaf73e7e89a8d3c2fb5ffe1f4b25e38e512ad4dafb61cd0285"
+      ],
+      "mode": 493
+    }
+  },
+  "action": "repair",
+  "min_engine": 2,
+  "files": [
+    "/etc/init.d/gtcombo-boot-menu",
+    "/usr/lib/gtcombo/android-boot.py",
+    "/usr/lib/gtcombo/android-once.py"
+  ],
+  "sha256": "3eb58bea7d378a6c10e492d0e98e0b8964860d4b3bcdfc3a389b5f99a1c869a8",
+  "size": 3284
+}

@@ -1,25 +1,17 @@
 {
-  "version": "1.0.1",
-  "unit_tests": 8,
-  "result": "PASS",
+  "version": "2.0.0",
+  "unit_tests": 20,
   "receiver_tested": false,
-  "remote_manifest_verified": false,
+  "preview_is_simulated": true,
+  "github_published": false,
   "packages": {
     "ipk": {
-      "sha256": "32275391ca1e5d5875490b2d0c4d24c97ad0625a3278ab4d030253662d013ba4",
-      "repository": {
-        "repository": "3bdlios/gt-panel",
-        "manifest_url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/manifest.json"
-      },
-      "bytes": 6296
+      "bytes": 26204,
+      "sha256": "f63a6fc4a3edf6d5f3c9ce0e024f7d46ca438818e22479485b3ba707823432ba"
     },
     "deb": {
-      "sha256": "bf4fcabbf3f3344bc7feae887a0090b827bd825ca6a303033c02f5e3113777c6",
-      "repository": {
-        "repository": "3bdlios/gt-panel",
-        "manifest_url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/manifest.json"
-      },
-      "bytes": 5940
+      "bytes": 24244,
+      "sha256": "5f0b330085b99dbb55bcdc7827eed33dcd5161f1073acefc7cb1d396183046da"
     }
   }
 }

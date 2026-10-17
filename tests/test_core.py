@@ -4,7 +4,23 @@ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parents[1]/'src'))
 from GTPanel import core
 class SafetyTests(unittest.TestCase):
     def setUp(self):
-        self.doc=json.loads((pathlib.Path(__file__).resolve().parents[1]/'repository/manifest.json').read_text())
+        self.doc=json.loads((pathlib.Path(__file__).resolve().parent/'fixtures/manifest.json').read_text())
+    def test_gt_combo_identity(self):
+        def fixture(path):
+            if path == '/proc/device-tree/model': return 'GTMedia GT Combo\x00'
+            if path == '/etc/image-version': return 'box_type=dreamone\ndistro=openatv\nimageversion=8.0.1\nimagebuild=20261007'
+            raise IOError('absent')
+        with patch.object(core,'read',side_effect=fixture):
+            result=core.facts()
+            self.assertEqual(result['model'],'GTMedia GT Combo')
+            self.assertEqual(result['image'],'openatv')
+            self.assertEqual(result['version'],'8.0.1.20261007')
+    def test_missing_identity_blocks(self):
+        with patch.object(core,'read',side_effect=IOError('absent')):
+            with self.assertRaises(core.SafetyError): core.facts()
+    def test_incomplete_image_blocks(self):
+        with patch.object(core,'read',side_effect=lambda path: 'GTMedia GT Combo' if path.endswith('/model') else 'box_type=dreamone'):
+            with self.assertRaises(core.SafetyError): core.facts()
     def test_manifest(self): core.validate(self.doc)
     def test_duplicate(self):
         self.doc['items'].append(self.doc['items'][0])
@@ -20,7 +36,7 @@ class SafetyTests(unittest.TestCase):
         with self.assertRaises(core.SafetyError): core.install(self.doc['items'][0],{},False)
     def test_hash_and_tar(self):
         item=self.doc['items'][0]; device={k:v[0] for k,v in item['compatibility'].items()}
-        bundle=(pathlib.Path(__file__).resolve().parents[1]/'repository/demo-fixes.tar.gz').read_bytes()
+        bundle=(pathlib.Path(__file__).resolve().parent/'fixtures/demo-fixes.tar.gz').read_bytes()
         with patch.object(core,'fetch',return_value=bundle): self.assertEqual(set(core.prepare(item,'me/repo',device)),set(item['files']))
         with patch.object(core,'fetch',return_value=b'bad'):
             with self.assertRaises(core.SafetyError): core.prepare(item,'me/repo',device)

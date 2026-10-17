@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "items": [
+    {
+      "id": "demo-fixes",
+      "title": "Demo Fixes",
+      "category": "Fixes",
+      "version": "1.0.0",
+      "description": "Example only: installs a text file. No actual firmware repair/update.",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/demo-fixes.tar.gz",
+      "sha256": "9700652fd7be8a3c634b6466516474948d3f47784dec8c6d46878a44b443c335",
+      "size": 217,
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTDemo/Fixes.txt"
+      ],
+      "compatibility": {
+        "model": [
+          "REPLACE_WITH_ACTUAL_MODEL"
+        ],
+        "image": [
+          "gt-enigma2"
+        ],
+        "version": [
+          "REPLACE_WITH_IMAGE_REVISION"
+        ],
+        "python": [
+          "REPLACE_WITH_PYTHON_MAJOR_MINOR"
+        ]
+      }
+    },
+    {
+      "id": "demo-plugins",
+      "title": "Demo Plugins",
+      "category": "Plugins",
+      "version": "1.0.0",
+      "description": "Example only: installs a text file. No actual firmware repair/update.",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/demo-plugins.tar.gz",
+      "sha256": "057d4df3c8e859b34155d33b546e310f50171faeea699f960f5f91c51f481030",
+      "size": 218,
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTDemo/Plugins.txt"
+      ],
+      "compatibility": {
+        "model": [
+          "REPLACE_WITH_ACTUAL_MODEL"
+        ],
+        "image": [
+          "gt-enigma2"
+        ],
+        "version": [
+          "REPLACE_WITH_IMAGE_REVISION"
+        ],
+        "python": [
+          "REPLACE_WITH_PYTHON_MAJOR_MINOR"
+        ]
+      }
+    },
+    {
+      "id": "demo-skins",
+      "title": "Demo Skins",
+      "category": "Skins",
+      "version": "1.0.0",
+      "description": "Example only: installs a text file. No actual firmware repair/update.",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/demo-skins.tar.gz",
+      "sha256": "6d4c43744982008352b60f32c80e3f0442dbb3f0d6957269ccd460e8e59fa98c",
+      "size": 204,
+      "files": [
+        "/usr/share/enigma2/GT-Demo/README.txt"
+      ],
+      "compatibility": {
+        "model": [
+          "REPLACE_WITH_ACTUAL_MODEL"
+        ],
+        "image": [
+          "gt-enigma2"
+        ],
+        "version": [
+          "REPLACE_WITH_IMAGE_REVISION"
+        ],
+        "python": [
+          "REPLACE_WITH_PYTHON_MAJOR_MINOR"
+        ]
+      }
+    },
+    {
+      "id": "demo-updates",
+      "title": "Demo Updates",
+      "category": "Updates",
+      "version": "1.0.0",
+      "description": "Example only: installs a text file. No actual firmware repair/update.",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/demo-updates.tar.gz",
+      "sha256": "d7157d58d86317cb6155d803ef7fdd11546f66b6bd8b4fbebfe69beb298509fc",
+      "size": 223,
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTDemo/Updates.txt"
+      ],
+      "compatibility": {
+        "model": [
+          "REPLACE_WITH_ACTUAL_MODEL"
+        ],
+        "image": [
+          "gt-enigma2"
+        ],
+        "version": [
+          "REPLACE_WITH_IMAGE_REVISION"
+        ],
+        "python": [
+          "REPLACE_WITH_PYTHON_MAJOR_MINOR"
+        ]
+      }
+    }
+  ]
+}
