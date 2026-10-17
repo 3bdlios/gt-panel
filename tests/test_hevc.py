@@ -10,7 +10,7 @@ class HEVCTests(unittest.TestCase):
   self.original=b'X'*repair.OFFSET+bytes.fromhex('68020035')+b'unchanged tail'
   self.fixed=self.original[:repair.OFFSET]+bytes.fromhex('600200b5')+self.original[repair.OFFSET+4:]
   self.module.write_bytes(self.original)
-  for name,value in [('MODULE',self.module),('BACKUP',self.backup),('ORIGINAL',repair.digest(self.original)),('FIXED',repair.digest(self.fixed))]:
+  for name,value in [('MODULE',self.module),('BACKUP',self.backup),('AUTO_STATE',self.root/'state'/'auto-completed'),('ORIGINAL',repair.digest(self.original)),('FIXED',repair.digest(self.fixed))]:
    p=patch.object(repair,name,value);p.start();self.addCleanup(p.stop)
   p=patch.object(repair,'verify_host');p.start();self.addCleanup(p.stop)
  def test_backup_install_idempotent_restore(self):

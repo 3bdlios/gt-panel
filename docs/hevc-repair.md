@@ -19,9 +19,11 @@ Patched SHA256:
 
 The repair tool accepts only that complete module and the GT Combo / 5.15.196
 host. It saves and verifies the original under `/var/lib/gt-hevc`, replaces the
-file atomically and offers restore. The user must apply the repair from the
-GT HEVC restart repair plugin after installing it from GT Panel, then reboot
-the receiver fully. A GUI restart does not reload the kernel module. Never
+file atomically and offers restore. Version 1.0.1 applies automatically on the first GUI startup after installation,
+then displays a five-second notice and reboots the receiver fully once. A persistent
+completion marker prevents a reboot loop and preserves a later manual restore.
+Failure displays an error and does not reboot. The plugin menu retains manual
+installation and restore. A GUI restart alone does not reload the kernel module. Never
 unload this decoder live: the live-reload experiment lost connectivity and
 the device rebooted; full boot loading is the supported path.
 
@@ -33,6 +35,6 @@ Analysis evidence:
 - Patched: `ev_ff1482c7398f31d8276e3cdc78e2e206c5c8338a525e6ff4bddbefd8523e9c07`
 - [Corresponding CoreELEC source](https://github.com/CoreELEC/media_modules-aml/blob/5.15.196_20260225/drivers/frame_provider/decoder/h265/vh265.c)
 
-Validation: four automated tests cover backup, idempotence, restore, rejection
+Validation: seven automated tests cover backup, idempotence, restore, rejection
 of unknown modules/corrupt backups, instruction operand and preserved target.
 Receiver booted with the patched module. The previously crashing interlaced HEVC channel crossed the same MMU-clear path twice without a panic; video timestamps advanced across monitoring samples. Receiver owner confirmed picture/playback stable after the minute-long trial. Broader channel/build coverage remains untested.

@@ -254,9 +254,9 @@
       "id": "gtcombo-hevc-repair",
       "title": "H.265 channel restart repair",
       "category": "Fixes",
-      "version": "1.0.0",
-      "description": "Repairs a confirmed HEVC NULL DMA allocation panic. After installing, open GT HEVC restart repair in the receiver plugin menu and choose Install. Keeps an original driver backup and offers restore.",
-      "warning": "Requires a full receiver reboot after applying the repair; GUI restart alone is not enough. Accepts only the tested GT Combo kernel 5.15.196 HEVC driver. Do not unload the decoder live.",
+      "version": "1.0.1",
+      "description": "Repairs a confirmed HEVC NULL DMA allocation panic. Applies automatically after installation, keeps an original driver backup and restarts the receiver fully once. Restore is available from GT HEVC restart repair in the plugin menu.",
+      "warning": "The receiver automatically reboots once after successful application. No reboot on failure. Accepts only the tested GT Combo kernel 5.15.196 HEVC driver. Do not unload the decoder live.",
       "compatibility": {
         "model": [
           "GTMedia GT Combo"
@@ -271,15 +271,15 @@
           "3.14"
         ]
       },
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-hevc-repair-1.0.0.tar.gz",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-hevc-repair-1.0.1.tar.gz",
       "format": "tar.gz",
       "files": [
         "/usr/lib/enigma2/python/Plugins/Extensions/GTHEVC/__init__.py",
         "/usr/lib/enigma2/python/Plugins/Extensions/GTHEVC/plugin.py",
         "/usr/lib/enigma2/python/Plugins/Extensions/GTHEVC/repair.py"
       ],
-      "sha256": "052cb910298a5664b6b928a5aa1d8cba0588e8763db85e6bbc58ee210759e57a",
-      "size": 1887
+      "sha256": "e1b99266e61b42317bf8da3cc425881597c86f2f245aa37ec22c34f3712e19d1",
+      "size": 2313
     }
   ]
 }

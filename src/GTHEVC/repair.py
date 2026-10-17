@@ -6,6 +6,7 @@ FIXED='829cd7d8fea5baedc302f6560e414bb4df75fea2b8d503c32123d0986cff11f4'
 MODULE=Path('/lib/modules/5.15.196/extra/amvdec_h265.ko')
 BACKUP=Path('/var/lib/gt-hevc/amvdec_h265.original.ko')
 OFFSET=0x123d0
+AUTO_STATE=Path('/var/lib/gt-hevc/auto-completed')
 
 def digest(data):return hashlib.sha256(data).hexdigest()
 
@@ -49,12 +50,18 @@ def install():
  if digest(MODULE.read_bytes())!=FIXED:raise RuntimeError('Driver readback mismatch')
  return 'HEVC fix installed. Restart the receiver fully to activate it; GUI restart is not enough.'
 
+def mark_auto_done():
+ AUTO_STATE.parent.mkdir(mode=0o700,parents=True,exist_ok=True)
+ atomic_write(AUTO_STATE,b'Automatic installation handled; do not reapply after restore.\n',0o600)
+
 def restore():
  verify_host();data=MODULE.read_bytes()
- if digest(data)==ORIGINAL:return 'Original HEVC driver already present.'
+ if digest(data)==ORIGINAL:
+  mark_auto_done();return 'Original HEVC driver already present.'
  if digest(data)!=FIXED:raise RuntimeError('Unreviewed current driver; no changes')
  original=BACKUP.read_bytes()
  if digest(original)!=ORIGINAL:raise RuntimeError('Backup checksum mismatch; no changes')
  atomic_write(MODULE,original,MODULE.stat().st_mode & 0o777)
  if digest(MODULE.read_bytes())!=ORIGINAL:raise RuntimeError('Restore readback mismatch')
+ mark_auto_done()
  return 'Original HEVC driver restored. Restart the receiver fully to activate it.'
