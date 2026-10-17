@@ -24,17 +24,17 @@ def layout(width):
     def pos(x,y):return '%d,%d'%(n(x),n(y))
     def size(w,h):return pos(w,h)
     parts=['<screen name="GTPanel" position="center,center" size="%s" title="GT Panel" backgroundColor="#0b1220" flags="wfNoBorder">'%size(1640,880)]
-    def rect(x,y,w,h,color):parts.append('<eLabel position="%s" size="%s" backgroundColor="%s" />'%(pos(x,y),size(w,h),color))
+    def rect(x,y,w,h,color):parts.append('<eLabel zPosition="0" position="%s" size="%s" backgroundColor="%s" />'%(pos(x,y),size(w,h),color))
     def text(name,x,y,w,h,font=24,color='#e6efff',bg='#0b1220'):
-        parts.append('<widget name="%s" position="%s" size="%s" font="Regular;%d" foregroundColor="%s" backgroundColor="%s" transparent="1" />'%(name,pos(x,y),size(w,h),n(font),color,bg))
+        parts.append('<widget zPosition="2" name="%s" position="%s" size="%s" font="Regular;%d" foregroundColor="%s" backgroundColor="%s" transparent="1" />'%(name,pos(x,y),size(w,h),n(font),color,bg))
     rect(0,0,1640,152,'#101d31'); rect(0,152,1640,2,'#24415a')
-    parts.append('<widget name="icon" position="%s" size="%s" pixmap="%s" alphatest="blend" scale="1" />'%(pos(28,24),size(104,104),escape(os.path.join(HERE,'icon-large.png'))))
+    parts.append('<widget zPosition="2" name="icon" position="%s" size="%s" pixmap="%s" alphatest="blend" scale="1" />'%(pos(28,24),size(104,104),escape(os.path.join(HERE,'icon-large.png'))))
     text('brand',156,29,650,54,43);text('subtitle',158,91,850,34,23,'#8da6bf')
     text('badge',1320,42,280,40,24,'#4ae3cf');text('connection',1160,94,440,32,20,'#8da6bf')
     rect(0,154,280,650,'#0e192a');text('rail_title',30,194,220,36,22,'#4ae3cf')
     text('rail_copy',30,252,215,210,26);text('device',30,540,220,210,20,'#8da6bf')
     text('section',320,190,760,48,33);text('status',320,246,760,54,21,'#8da6bf')
-    parts.append('<widget name="list" position="%s" size="%s" scrollbarMode="showOnDemand" backgroundColor="#101d31" foregroundColor="#e6efff" backgroundColorSelected="#154c70" foregroundColorSelected="#ffffff" transparent="0" />'%(pos(320,316),size(770,448)))
+    parts.append('<widget zPosition="2" name="list" position="%s" size="%s" scrollbarMode="showOnDemand" backgroundColor="#101d31" foregroundColor="#e6efff" backgroundColorSelected="#154c70" foregroundColorSelected="#ffffff" transparent="0" />'%(pos(320,316),size(770,448)))
     rect(1120,190,480,574,'#101d31');rect(1120,190,4,574,'#28cbbb')
     text('detail_tag',1152,222,416,35,20,'#4ae3cf');text('detail_title',1152,278,416,108,31)
     text('detail',1152,405,416,244,23,'#afc2d7');text('detail_hint',1152,691,416,44,20,'#4ae3cf')
@@ -45,9 +45,9 @@ def layout(width):
 
 class GTPanel(Screen):
     def __init__(self,session):
-        self.skin,self.scale=layout(getDesktop(0).size().width())
+        self.skin,self.panel_scale=layout(getDesktop(0).size().width())
         Screen.__init__(self,session)
-        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.1',
+        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.1.1',
                 'connection':'GitHub catalog', 'rail_title':'GT ENIGMA2', 'rail_copy':'DOWNLOADS\n& REPAIRS\n\nOne place for\nyour receiver.',
                 'device':'Checking device…','section':'Explore your panel','status':'Loading the GitHub catalog…',
                 'detail_tag':'BUILT FOR YOUR RECEIVER','detail_title':'Choose a category','detail':'Review compatibility and changes before installing.\n\nBackups are created before files are replaced.',
@@ -55,9 +55,9 @@ class GTPanel(Screen):
         for key,value in labels.items():self[key]=Label(value)
         self['icon']=Pixmap()
         self['list']=MenuList([],content=eListboxPythonMultiContent)
-        self['list'].l.setFont(0,gFont('Regular',int(29*self.scale)))
-        self['list'].l.setFont(1,gFont('Regular',int(21*self.scale)))
-        self['list'].l.setItemHeight(int(112*self.scale))
+        self['list'].l.setFont(0,gFont('Regular',int(29*self.panel_scale)))
+        self['list'].l.setFont(1,gFont('Regular',int(21*self.panel_scale)))
+        self['list'].l.setItemHeight(int(112*self.panel_scale))
         self['list'].onSelectionChanged.append(self.details)
         self['actions']=ActionMap(['OkCancelActions','ColorActions'],{'ok':self.select,'green':self.select,'cancel':self.back,'red':self.back,'blue':self.backups},-1)
         self.doc={'items':[]};self.level='categories';self.rows=[];self.busy=True;self.alive=True;self.config={}
@@ -70,10 +70,10 @@ class GTPanel(Screen):
         self.onFirstExecBegin.append(self.load)
     def closed(self):self.alive=False
     def entries(self,values):
-        def n(v):return int(v*self.scale)
+        def n(v):return int(v*self.panel_scale)
         entries=[]
         for title,sub in values:
-            entries.append((title,MultiContentEntryText(pos=(n(24),n(16)),size=(n(710),n(42)),font=0,flags=RT_VALIGN_CENTER,text=title,color=0xe6efff,color_sel=0xffffff),MultiContentEntryText(pos=(n(24),n(65)),size=(n(710),n(30)),font=1,text=sub,color=0x8da6bf,color_sel=0xb7e9ef)))
+            entries.append([title,MultiContentEntryText(pos=(n(24),n(16)),size=(n(710),n(42)),font=0,flags=RT_VALIGN_CENTER,text=title,color=0xe6efff,color_sel=0xffffff),MultiContentEntryText(pos=(n(24),n(65)),size=(n(710),n(30)),font=1,text=sub,color=0x8da6bf,color_sel=0xb7e9ef)])
         self['list'].setList(entries)
     def show_categories(self):
         self.level='categories';self.rows=list(core.CATEGORIES)
