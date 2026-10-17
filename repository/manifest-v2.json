@@ -137,6 +137,40 @@
       },
       "sha256": "c5eb50a62a58e92a47a897b8326c8206c91c18078451f0e9b7c845dddf75105c",
       "size": 2858
+    },
+    {
+      "id": "gt-remote",
+      "title": "GT Remote - Mobile web remote",
+      "category": "Plugins",
+      "version": "1.0.0",
+      "description": "All OpenWebif remote buttons in a standalone mobile page on port 8088. Supports iPhone, Android and long press. Open GT Remote on the receiver to see its address and phone pairing code.",
+      "warning": "Requires OpenWebif enabled on port 80. Use on your local network. Optional screenshots show menus only. GT Panel restarts the GUI after installation.",
+      "compatibility": {
+        "model": [
+          "GTMedia GT Combo"
+        ],
+        "image": [
+          "openatv"
+        ],
+        "version": [
+          "8.0.1.20261007"
+        ],
+        "python": [
+          "3.14"
+        ]
+      },
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/enigma2-plugin-extensions-gtremote_1.0.0_all.ipk",
+      "format": "ipk",
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTRemote/__init__.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTRemote/plugin.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTRemote/server.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTRemote/web/app.js",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTRemote/web/index.html",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTRemote/web/style.css"
+      ],
+      "sha256": "b064a230c3a05ffe6ae58cd824546657926d214a1dda13449dad0cf9892cd94f",
+      "size": 9798
     }
   ]
 }
