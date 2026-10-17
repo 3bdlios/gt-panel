@@ -86,11 +86,16 @@ def perform(restore=False, automatic=False):
         if automatic and not state.get('enabled', True):
             return '2.4 GHz mode is disabled.'
         if not CONFIG.is_file():
+            if restore:
+                state['enabled'] = False
+                atomic(statefile, json.dumps(state, indent=2))
             return 'No saved wlan0 network yet. Connect to a saved network, then enable this repair.'
         text = CONFIG.read_text()
         originals = dict(state.get('originals', {}))
         new, count = rewrite(text, originals, restore)
         if not count:
+            if restore:
+                atomic(statefile, json.dumps({'enabled': False, 'originals': originals}, indent=2))
             return 'No matching saved networks; configuration unchanged.'
         changed = new != text
         if changed:

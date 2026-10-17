@@ -85,6 +85,17 @@ class BandRepairTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'GTMedia'):
                 repair.perform()
 
+    def test_restore_without_saved_network_disables_future_autostart(self):
+        with tempfile.TemporaryDirectory() as folder:
+            config = Path(folder)/'missing.conf'
+            state = Path(folder)/'state'
+            with patch.object(repair, 'CONFIG', config), patch.object(repair, 'STATE', state), \
+                 patch.object(repair, 'supported', return_value=True):
+                repair.perform(restore=True)
+                config.write_text(CONFIG)
+                repair.perform(automatic=True)
+                self.assertEqual(config.read_text(), CONFIG)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -83,7 +83,7 @@
       "id": "gtcombo-wifi24",
       "title": "Wi-Fi stability: 2.4 GHz mode",
       "category": "Fixes",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "action": "repair",
       "min_engine": 2,
       "description": "Workaround for GT Combo Wi-Fi hangs: limits saved wlan0 networks to 2.4 GHz. Requires manual GUI restart after installation. Restore previous band settings from the GT Wi-Fi plugin menu.",
@@ -102,7 +102,7 @@
           "3.14"
         ]
       },
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-wifi24-1.0.0.tar.gz",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-wifi24-1.0.1.tar.gz",
       "format": "tar.gz",
       "files": [
         "/usr/lib/enigma2/python/Plugins/Extensions/GTWiFi24/__init__.py",
@@ -112,28 +112,31 @@
       "targets": {
         "/usr/lib/enigma2/python/Plugins/Extensions/GTWiFi24/__init__.py": {
           "before": [
-            null
+            null,
+            "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
           ],
           "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
           "mode": 420
         },
         "/usr/lib/enigma2/python/Plugins/Extensions/GTWiFi24/plugin.py": {
           "before": [
-            null
+            null,
+            "f750f695679954505be46d5b903bb83319bdf5efc8e79a9229c91a46a0552256"
           ],
           "sha256": "f750f695679954505be46d5b903bb83319bdf5efc8e79a9229c91a46a0552256",
           "mode": 420
         },
         "/usr/lib/enigma2/python/Plugins/Extensions/GTWiFi24/repair.py": {
           "before": [
-            null
+            null,
+            "d948fc1f466ccc604a89e98919b38ac81ac79aadfff36061b9b688effbbef858"
           ],
-          "sha256": "d948fc1f466ccc604a89e98919b38ac81ac79aadfff36061b9b688effbbef858",
+          "sha256": "75fdc26379a9e610884cf3453ee9aac1121804d5926982646abacbfd029d5ef9",
           "mode": 420
         }
       },
-      "sha256": "6b15fbec271f5751dc289dd2913170d542ad0f2b76cc6fa8d2cdadf6e7ce6eb8",
-      "size": 2828
+      "sha256": "c5eb50a62a58e92a47a897b8326c8206c91c18078451f0e9b7c845dddf75105c",
+      "size": 2858
     }
   ]
 }
