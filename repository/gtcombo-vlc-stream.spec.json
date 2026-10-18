@@ -1,0 +1,66 @@
+{
+  "id": "gtcombo-vlc-stream",
+  "category": "Fixes",
+  "title": "إصلاح بث VLC — GT Combo",
+  "version": "1.0.0",
+  "description": "إصلاح بث القنوات المفتوحة والمشفرة المصرح بها على المنفذ 8002 بمشاركة قارئ الصوت المحلي. تم اختبار الفيديو والصوت بمحرك VLC. المنفذ 8001 غير مشمول.",
+  "warning": "يعيد هذا الإصدار من البنل تشغيل واجهة Enigma2 تلقائيًا بعد التثبيت؛ أعد تشغيل الرسيفر بالكامل يدويًا لتفعيل قارئ الصوت وخدمة 8002 معًا. لا تغييرات في OSCam أو المفاتيح أو النواة أو إعدادات DSC/FIFO. اتصال بث واحد فقط. بعد الاسترجاع أعد تشغيل الرسيفر بالكامل يدويًا أيضًا. اختُبرت الملفات مباشرة؛ لم يُختبر الإقلاع البارد أو التثبيت من البنل على الجهاز.",
+  "compatibility": {
+    "model": [
+      "GTMedia GT Combo"
+    ],
+    "image": [
+      "openatv"
+    ],
+    "version": [
+      "8.0.1.20261007"
+    ],
+    "python": [
+      "3.14"
+    ]
+  },
+  "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/feature/ipk-one-click/repository/gtcombo-vlc-stream-1.0.0.tar.gz",
+  "checks": [
+    {
+      "type": "sha256",
+      "path": "/usr/lib/gtcombo/gt-native-controller.py",
+      "bytes": 4178,
+      "sha256": "695ceb3a03be10816009479a6f4fef0b1d3beec489846147e8b21cea600193c4"
+    },
+    {
+      "type": "sha256",
+      "path": "/usr/lib/gtcombo/gt-native-audio",
+      "bytes": 79032,
+      "sha256": "8c6c2a230d0b5eac2d1bc91f06c27f4228ac7ad6713fc119201b14dc5651e4aa"
+    },
+    {
+      "type": "sha256",
+      "path": "/usr/lib/gtcombo/gt-native-audio-ca",
+      "bytes": 79032,
+      "sha256": "da8ffe2ff29b5a6cf3903b3adc335de1a8f0fe7fcc0af773242a676173f56692"
+    }
+  ],
+  "targets": {
+    "/usr/lib/gtcombo/gt-network-stream.py": {
+      "sha256": "d766ab908f2f6b5e105394c31175efa8121d5d13e7cbe43017fe2277f4dea96b",
+      "before": [
+        "e4cfe92c3d53b5163f94e2125b94024a727eff6b7e2b0e1917dd4497ea9a1e2c"
+      ],
+      "mode": 420
+    },
+    "/usr/lib/gtcombo/gt-native-hardware.py": {
+      "sha256": "b50d9de84a98d8a946fec25b88b2b436197138bd53ab6dcf791909070c8a3952",
+      "before": [
+        "a81a52b519347a632337c96c88c3f9f253a6bd22ac60a47dd06e237a88a7c118"
+      ],
+      "mode": 420
+    },
+    "/usr/lib/gtcombo/libgt-ts-tee.so": {
+      "sha256": "d9431b13882e045b7e3c0a8ae2d892767a4cc2841f16448bc42738d7cecce333",
+      "before": [
+        null
+      ],
+      "mode": 420
+    }
+  }
+}
