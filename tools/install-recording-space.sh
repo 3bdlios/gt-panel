@@ -14,7 +14,7 @@ python3 - "$task_dir/prepare-recording-space.py" <<'VERIFY'
 import hashlib,sys
 from pathlib import Path
 p=Path(sys.argv[1]);data=p.read_bytes()
-if hashlib.sha256(data).hexdigest() != '5d1a2223062c3d4ffe2346e2417ebed2d63ffd5a82e94edd88e5a7547a3baf32':raise SystemExit('STOP: checksum mismatch')
+if hashlib.sha256(data).hexdigest() != '23e86eebe40971c20e531a1bcc307d2e3c5c7be0b3f6c7b1f00612f44f09d229':raise SystemExit('STOP: checksum mismatch')
 compile(data,str(p),'exec')
 VERIFY
 # Preflight is read-only and must pass before installation.
