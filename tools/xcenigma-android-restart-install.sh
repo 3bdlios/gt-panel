@@ -12,7 +12,7 @@ else
 fi
 python3 - "$task_dir/bundle.tar.gz" <<'CHECK'
 import hashlib,sys
-assert hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest() == 'a7adb0ac2f03054f7b21204a398739d68f2b5090c5fb32052c4a167b101c8189', 'Download checksum mismatch'
+assert hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest() == 'bca15c3e8f96c295202dea9236c77ad660e10c9558e7243f00bef1655cc41dd3', 'Download checksum mismatch'
 CHECK
 tar -xzf "$task_dir/bundle.tar.gz" -C "$task_dir"
 sh "$task_dir/install.sh"
