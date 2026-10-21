@@ -1,5 +1,7 @@
 #!/bin/sh
 set -eu
+case "${1-}" in ""|--auto) ;; *) echo 'Use no arguments (install only) or --auto (prepare and reboot if needed)'; exit 1 ;; esac
+[ "$#" -le 1 ] || exit 1
 [ "$(id -u)" = 0 ] || { echo 'Run as root'; exit 1; }
 command -v python3 >/dev/null 2>&1 || { echo 'Python3 is required'; exit 1; }
 task_dir=$(mktemp -d /tmp/xc-recording-install.XXXXXX)
@@ -14,7 +16,7 @@ python3 - "$task_dir/prepare-recording-space.py" <<'VERIFY'
 import hashlib,sys
 from pathlib import Path
 p=Path(sys.argv[1]);data=p.read_bytes()
-if hashlib.sha256(data).hexdigest() != '23e86eebe40971c20e531a1bcc307d2e3c5c7be0b3f6c7b1f00612f44f09d229':raise SystemExit('STOP: checksum mismatch')
+if hashlib.sha256(data).hexdigest() != 'ae163e339d53f30d1fbe903dcb3bfb16681670283def884d297cc0d1e639d152':raise SystemExit('STOP: checksum mismatch')
 compile(data,str(p),'exec')
 VERIFY
 # Preflight is read-only and must pass before installation.
@@ -32,5 +34,8 @@ try:
 finally:
  if os.path.exists(tmp):os.unlink(tmp)
 INSTALL
-printf '%s
-' 'Installed: xc-recording-space' 'No partition changes or formatting performed.' 'To create the extra partition: python3 /usr/local/sbin/xc-recording-space --apply' 'Reboot the receiver when requested, then run the same --apply command again to format and mount the NEW partition.'
+printf '%s\n' 'Installed: xc-recording-space'
+if [ "${1-}" = --auto ]; then
+ exec python3 /usr/local/sbin/xc-recording-space --auto
+fi
+printf '%s\n' 'No partition changes or formatting performed.' 'For automatic preparation including reboot/resume: python3 /usr/local/sbin/xc-recording-space --auto'
