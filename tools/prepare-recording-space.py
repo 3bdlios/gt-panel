@@ -71,6 +71,19 @@ def verify_node(device,state):
  if int((p/'start').read_text())!=state['start'] or int((p/'size').read_text())!=state['sectors']:raise RuntimeError('Kernel partition mapping differs; reboot before proceeding')
  return True
 
+def empty_directory_tree(path):
+ # Empty directory structure is safe to cover; any file/symlink/error is not.
+ pending=[path]
+ try:
+  while pending:
+   current=pending.pop()
+   with os.scandir(current) as items:
+    for item in items:
+     if not item.is_dir(follow_symlinks=False):return False
+     pending.append(item.path)
+  return True
+ except OSError:return False
+
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--apply',action='store_true',help='Create partition, then after a reboot format and mount it');args=ap.parse_args()
  if os.geteuid()!=0:raise RuntimeError('Run as root')
@@ -99,7 +112,7 @@ def main():
  for m in mounts():
   if m[1]==str(MOUNT) or m[1].startswith(str(MOUNT)+'/'):
    if not state or os.path.realpath(m[0])!=disk+'4':raise RuntimeError('/media/hdd is already used by another filesystem')
- if MOUNT.exists() and not os.path.ismount(MOUNT) and any(MOUNT.iterdir()):raise RuntimeError('/media/hdd contains files; refusing to hide them')
+ if MOUNT.exists() and not os.path.ismount(MOUNT) and not empty_directory_tree(MOUNT):raise RuntimeError('/media/hdd contains files; refusing to hide them')
  fstab=Path('/etc/fstab');fstext=fstab.read_text() if fstab.exists() else ''
  for line in fstext.splitlines():
   columns=line.split()
