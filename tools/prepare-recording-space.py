@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Use only the unallocated tail of the known XCONN 4GiB USB image. Default: report only."""
-import argparse,hashlib,json,os,re,shutil,stat,struct,subprocess,tempfile,uuid
+import argparse,hashlib,json,os,re,shutil,stat,struct,subprocess,tempfile,uuid,time
 from pathlib import Path
 LAYOUT=[(8192,1048576,12),(1056768,6291456,131),(7348224,1040384,131)]
 STATE=Path('/etc/xcenigma-recording-space')
@@ -84,8 +84,50 @@ def empty_directory_tree(path):
   return True
  except OSError:return False
 
+HOOK=Path('/etc/init.d/xc-recording-resume')
+HOOK_LINK=Path('/etc/rcS.d/S98xc-recording-resume')
+PROGRAM=Path('/usr/local/sbin/xc-recording-space')
+HOOK_TAG='# XC_RECORDING_RESUME_V1'
+
+def disable_resume():
+ if HOOK_LINK.is_symlink() and os.readlink(HOOK_LINK)==str(HOOK):HOOK_LINK.unlink()
+ if HOOK.is_file() and not HOOK.is_symlink() and HOOK_TAG in HOOK.read_text():HOOK.unlink()
+
+def install_resume():
+ # Persist the program: /tmp may disappear at reboot.
+ PROGRAM.parent.mkdir(parents=True,exist_ok=True)
+ source=Path(__file__).resolve()
+ if source!=PROGRAM.resolve():
+  fd,tmp=tempfile.mkstemp(prefix='.xc-recording-',dir=str(PROGRAM.parent))
+  try:
+   with os.fdopen(fd,'wb') as f:f.write(source.read_bytes());f.flush();os.fsync(f.fileno())
+   os.chmod(tmp,0o755);os.replace(tmp,PROGRAM)
+  finally:
+   if os.path.exists(tmp):os.unlink(tmp)
+ if HOOK.is_symlink() or (HOOK.exists() and HOOK_TAG not in HOOK.read_text()):raise RuntimeError('Unrecognized startup hook exists')
+ if HOOK_LINK.exists() or HOOK_LINK.is_symlink():
+  if not HOOK_LINK.is_symlink() or os.readlink(HOOK_LINK)!=str(HOOK):raise RuntimeError('Startup hook path already occupied')
+ HOOK.parent.mkdir(parents=True,exist_ok=True);HOOK_LINK.parent.mkdir(parents=True,exist_ok=True)
+ # Unlink the boot trigger BEFORE resuming, so a failure cannot loop each boot.
+ HOOK.write_text("#!/bin/sh\n"+HOOK_TAG+"\ncase \"$1\" in start)\n rm -f /etc/rcS.d/S98xc-recording-resume\n /usr/bin/python3 /usr/local/sbin/xc-recording-space --resume >> /etc/xcenigma-recording-space/resume.log 2>&1\n ;;\nesac\n")
+ HOOK.chmod(0o755)
+ if not HOOK_LINK.is_symlink():HOOK_LINK.symlink_to(str(HOOK))
+ os.sync()
+
+def reboot_to_resume():
+ install_resume()
+ print('AUTO: rebooting once; setup will resume automatically. Log: /etc/xcenigma-recording-space/resume.log',flush=True)
+ avahi=Path('/etc/init.d/avahi-daemon')
+ if avahi.exists():
+  subprocess.run([str(avahi),'stop'],check=True,timeout=15);time.sleep(1)
+ os.sync();subprocess.run(['/sbin/reboot'],check=True)
+
 def main():
- ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--apply',action='store_true',help='Create partition, then after a reboot format and mount it');args=ap.parse_args()
+ ap=argparse.ArgumentParser(description=__doc__);modes=ap.add_mutually_exclusive_group()
+ modes.add_argument('--apply',action='store_true',help='Manual two-stage preparation')
+ modes.add_argument('--auto',action='store_true',help='Prepare, reboot if needed, and resume automatically once')
+ modes.add_argument('--resume',action='store_true',help=argparse.SUPPRESS)
+ args=ap.parse_args();args.apply=args.apply or args.auto or args.resume
  if os.geteuid()!=0:raise RuntimeError('Run as root')
  disk,total,raw=physical();e=entries(raw)
  print('USB disk:',disk,'Capacity GiB:',round(total*512/2**30,2))
@@ -101,6 +143,7 @@ def main():
   if (e[3]['start'],e[3]['sectors'],e[3]['type'])!=(state['start'],state['sectors'],131):raise RuntimeError('Unexpected partition 4')
   print('Known prepared partition:',disk+'4','GiB:',round(state['sectors']*512/2**30,2))
  else:
+  if args.resume:raise RuntimeError('No prepared disk state; resume refused')
   after,start,size=plan(raw,total)
   print('Unallocated space to use GiB:',round(size*512/2**30,2))
  if not args.apply:
@@ -141,9 +184,14 @@ def main():
     raise
   finally:os.close(fd)
   print('PARTITION CREATED. Backup:',backup)
-  print('Reboot Enigma2 DEVICE, then run this script with --apply again. No formatting performed yet.');return
+  if args.resume:raise RuntimeError('Unexpected fresh partition in resume mode')
+  if args.auto:reboot_to_resume()
+  else:print('Reboot Enigma2 DEVICE, then run this script with --apply again. No formatting performed yet.')
+  return
  device=disk+'4'
- if not verify_node(device,state):raise RuntimeError('New partition not visible. Reboot the device, then run --apply again')
+ if not verify_node(device,state):
+  if args.auto:reboot_to_resume();return
+  raise RuntimeError('New partition not visible. Reboot the device, then run --apply again')
  known_uuid=uuid_of(device)
  if known_uuid and known_uuid!=state['uuid']:raise RuntimeError('Target contains an unexpected filesystem; refusing to erase it')
  if not known_uuid:
@@ -164,9 +212,14 @@ def main():
   if not fb.exists():fb.write_text(fstext);fb.chmod(0o600)
   with fstab.open('a') as f:f.write(('' if not fstext or fstext.endswith('\n') else '\n')+line+'\n');f.flush();os.fsync(f.fileno())
  state['phase']='ready';atomic_json(statepath,state);os.sync()
+ if args.auto or args.resume:disable_resume()
  print('READY. Recording directory: /media/hdd/movie/ ; Timeshift directory: /media/hdd/timeshift/')
  print('Select these paths in Enigma2 recording/timeshift settings. Automatic timeshift was not enabled.')
  print('Free GiB:',round(shutil.disk_usage(MOUNT).free/2**30,2))
 if __name__=='__main__':
  try:main()
- except Exception as e:print('STOP:',e,file=__import__('sys').stderr);raise SystemExit(1)
+ except Exception as e:
+  if any(arg in __import__('sys').argv for arg in ('--auto','--resume')):
+   try:disable_resume()
+   except OSError:pass
+  print('STOP:',e,file=__import__('sys').stderr);raise SystemExit(1)
