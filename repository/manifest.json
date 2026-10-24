@@ -2,33 +2,6 @@
   "schema": 1,
   "items": [
     {
-      "id": "demo-fixes",
-      "title": "Demo Fixes",
-      "category": "Fixes",
-      "version": "1.0.0",
-      "description": "Example only: installs a text file. No actual firmware repair/update.",
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/demo-fixes.tar.gz",
-      "sha256": "9700652fd7be8a3c634b6466516474948d3f47784dec8c6d46878a44b443c335",
-      "size": 217,
-      "files": [
-        "/usr/lib/enigma2/python/Plugins/Extensions/GTDemo/Fixes.txt"
-      ],
-      "compatibility": {
-        "model": [
-          "REPLACE_WITH_ACTUAL_MODEL"
-        ],
-        "image": [
-          "gt-enigma2"
-        ],
-        "version": [
-          "REPLACE_WITH_IMAGE_REVISION"
-        ],
-        "python": [
-          "REPLACE_WITH_PYTHON_MAJOR_MINOR"
-        ]
-      }
-    },
-    {
       "id": "demo-plugins",
       "title": "Demo Plugins",
       "category": "Plugins",
