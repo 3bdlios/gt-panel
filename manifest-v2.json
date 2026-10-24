@@ -82,10 +82,10 @@
     {
       "id": "gtcombo-vlc-stream",
       "category": "Fixes",
-      "title": "إصلاح بث VLC — GT Combo",
+      "title": "\u0625\u0635\u0644\u0627\u062d \u0628\u062b VLC \u2014 GT Combo",
       "version": "1.0.0",
-      "description": "إصلاح بث القنوات المفتوحة والمشفرة المصرح بها على المنفذ 8002 بمشاركة قارئ الصوت المحلي. تم اختبار الفيديو والصوت بمحرك VLC. المنفذ 8001 غير مشمول.",
-      "warning": "بعد التثبيت أعد تشغيل الرسيفر يدويًا لتفعيل الملفات الثلاثة معًا؛ لا يتم أي تشغيل أو إعادة تشغيل تلقائية. يُنسخ خرج قارئ الصوت محليًا دون حجب الصوت. لا تغييرات في OSCam أو المفاتيح أو النواة أو إعدادات DSC/FIFO. اتصال بث واحد فقط. بعد الاسترجاع من نسخ البنل أعد تشغيل الرسيفر يدويًا أيضًا. لم يُختبر الإقلاع البارد أو التثبيت من البنل على الجهاز؛ اختُبرت الملفات نفسها مباشرة.",
+      "description": "\u0625\u0635\u0644\u0627\u062d \u0628\u062b \u0627\u0644\u0642\u0646\u0648\u0627\u062a \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629 \u0648\u0627\u0644\u0645\u0634\u0641\u0631\u0629 \u0627\u0644\u0645\u0635\u0631\u062d \u0628\u0647\u0627 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u0641\u0630 8002 \u0628\u0645\u0634\u0627\u0631\u0643\u0629 \u0642\u0627\u0631\u0626 \u0627\u0644\u0635\u0648\u062a \u0627\u0644\u0645\u062d\u0644\u064a. \u062a\u0645 \u0627\u062e\u062a\u0628\u0627\u0631 \u0627\u0644\u0641\u064a\u062f\u064a\u0648 \u0648\u0627\u0644\u0635\u0648\u062a \u0628\u0645\u062d\u0631\u0643 VLC. \u0627\u0644\u0645\u0646\u0641\u0630 8001 \u063a\u064a\u0631 \u0645\u0634\u0645\u0648\u0644.",
+      "warning": "\u0628\u0639\u062f \u0627\u0644\u062a\u062b\u0628\u064a\u062a \u0623\u0639\u062f \u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u0631\u0633\u064a\u0641\u0631 \u064a\u062f\u0648\u064a\u064b\u0627 \u0644\u062a\u0641\u0639\u064a\u0644 \u0627\u0644\u0645\u0644\u0641\u0627\u062a \u0627\u0644\u062b\u0644\u0627\u062b\u0629 \u0645\u0639\u064b\u0627\u061b \u0644\u0627 \u064a\u062a\u0645 \u0623\u064a \u062a\u0634\u063a\u064a\u0644 \u0623\u0648 \u0625\u0639\u0627\u062f\u0629 \u062a\u0634\u063a\u064a\u0644 \u062a\u0644\u0642\u0627\u0626\u064a\u0629. \u064a\u064f\u0646\u0633\u062e \u062e\u0631\u062c \u0642\u0627\u0631\u0626 \u0627\u0644\u0635\u0648\u062a \u0645\u062d\u0644\u064a\u064b\u0627 \u062f\u0648\u0646 \u062d\u062c\u0628 \u0627\u0644\u0635\u0648\u062a. \u0644\u0627 \u062a\u063a\u064a\u064a\u0631\u0627\u062a \u0641\u064a OSCam \u0623\u0648 \u0627\u0644\u0645\u0641\u0627\u062a\u064a\u062d \u0623\u0648 \u0627\u0644\u0646\u0648\u0627\u0629 \u0623\u0648 \u0625\u0639\u062f\u0627\u062f\u0627\u062a DSC/FIFO. \u0627\u062a\u0635\u0627\u0644 \u0628\u062b \u0648\u0627\u062d\u062f \u0641\u0642\u0637. \u0628\u0639\u062f \u0627\u0644\u0627\u0633\u062a\u0631\u062c\u0627\u0639 \u0645\u0646 \u0646\u0633\u062e \u0627\u0644\u0628\u0646\u0644 \u0623\u0639\u062f \u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u0631\u0633\u064a\u0641\u0631 \u064a\u062f\u0648\u064a\u064b\u0627 \u0623\u064a\u0636\u064b\u0627. \u0644\u0645 \u064a\u064f\u062e\u062a\u0628\u0631 \u0627\u0644\u0625\u0642\u0644\u0627\u0639 \u0627\u0644\u0628\u0627\u0631\u062f \u0623\u0648 \u0627\u0644\u062a\u062b\u0628\u064a\u062a \u0645\u0646 \u0627\u0644\u0628\u0646\u0644 \u0639\u0644\u0649 \u0627\u0644\u062c\u0647\u0627\u0632\u061b \u0627\u062e\u062a\u064f\u0628\u0631\u062a \u0627\u0644\u0645\u0644\u0641\u0627\u062a \u0646\u0641\u0633\u0647\u0627 \u0645\u0628\u0627\u0634\u0631\u0629.",
       "compatibility": {
         "model": [
           "GTMedia GT Combo"
@@ -153,6 +153,373 @@
       ],
       "sha256": "d861064cf8ad6e9727cdb4c00f54de66f05a3d701a7a3eedacafdd06a8c958e6",
       "size": 7242
+    },
+    {
+      "id": "audioshift-gt-fixed",
+      "title": "AudioShift - Smooth video delay",
+      "category": "Plugins",
+      "version": "1.6.0-r20261025.2",
+      "description": "AudioShift with lightweight UI, external-audio channel mute, DTS video pacing and display-clock correction. GUI restarts automatically after successful installation.",
+      "warning": "Only for the modified XCONN/GTMedia OpenATV 8.0.1 image with GT native playback and channel gate. Tested on selected H264 HD channels; KTV, 4K and all delay values are not certified. Personal saved sources are preserved.",
+      "format": "ipk",
+      "action": "repair",
+      "min_engine": 2,
+      "compatibility": {
+        "model": [
+          "XCONN",
+          "GTMedia GT Combo"
+        ],
+        "image": [
+          "openatv"
+        ],
+        "version": [
+          "8.0.1.20261007"
+        ],
+        "python": [
+          "3.14"
+        ]
+      },
+      "url": "https://github.com/3bdlios/gt-panel/releases/download/audioshift-gt-20261025.2/enigma2-plugin-extensions-audioshift_1.6.0-r20261025.2_aarch64-panel.ipk",
+      "size": 10447540,
+      "sha256": "6a80ccf810af331e9832ccdc601ab8bce6f71967ebc5490bc8afa4f4b192e2c1",
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/__init__.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/__init__.pyc",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/alsactl.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/assets.tar.gz",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_daemon.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_engine.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_ui.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_web.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/beinepg.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/bin/ffmpeg-audioshift",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/core.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/dmram.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/dmram.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/keymap.xml",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/onlineepg.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/plugin.png",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/plugin.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/plugin.pyc",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/qrcodegen.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/stream_manifest.json",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/tsring.so",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/tsring_run.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/webui.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_assets.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_assets.pyc",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_async_control.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_async_control.pyc",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_audio_duck.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_audio_duck.pyc",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_light_ui.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_light_ui.pyc",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_video_delay.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_video_delay.pyc",
+        "/usr/lib/gtcombo/gt-audioshift-video-delay.py",
+        "/usr/lib/gtcombo/gt-audioshift-video-delay.pyc"
+      ],
+      "targets": {
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/__init__.py": {
+          "before": [
+            null,
+            "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+          ],
+          "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/__init__.pyc": {
+          "before": [
+            null,
+            "24c0a8c9f0277f4b359bb943fa13c21e91c9d84b0d0eb9659db36092ca89c435",
+            "98106b3fbd4acde466acfe7c9b43ec1d1b17747e324aa40202a9c399f706c15d"
+          ],
+          "sha256": "24c0a8c9f0277f4b359bb943fa13c21e91c9d84b0d0eb9659db36092ca89c435",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/alsactl.so": {
+          "before": [
+            null,
+            "fbb8e36cb6e67def3ecc4e57ab3428094de63dd80c758535d7e5a32125e370a6"
+          ],
+          "sha256": "fbb8e36cb6e67def3ecc4e57ab3428094de63dd80c758535d7e5a32125e370a6",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/assets.tar.gz": {
+          "before": [
+            null
+          ],
+          "sha256": "7829f9451db46d38c65b7d5db0ef2788d88de138fc07921f402ad5ec1d80808d",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_daemon.py": {
+          "before": [
+            null,
+            "e306cbe981a9df977993106cbff1e3a40af2a99f7ea98e30c5a65e4f79e90b2b"
+          ],
+          "sha256": "e306cbe981a9df977993106cbff1e3a40af2a99f7ea98e30c5a65e4f79e90b2b",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_engine.so": {
+          "before": [
+            null,
+            "fe11c0413051ce8e439104b1075ec9b26b56c72e945d7e4fbf57341efd8ea827"
+          ],
+          "sha256": "fe11c0413051ce8e439104b1075ec9b26b56c72e945d7e4fbf57341efd8ea827",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_ui.so": {
+          "before": [
+            null,
+            "f7c4ec3803efc0e3cfa00771972247fe7fd09f23c9f5d94f311cd4d2fa7268e6"
+          ],
+          "sha256": "f7c4ec3803efc0e3cfa00771972247fe7fd09f23c9f5d94f311cd4d2fa7268e6",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/audioshift_web.so": {
+          "before": [
+            null,
+            "69234a415618670090810633eb799823c37aa6bd79185e4fcc80739b6a492b74"
+          ],
+          "sha256": "69234a415618670090810633eb799823c37aa6bd79185e4fcc80739b6a492b74",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/beinepg.so": {
+          "before": [
+            null,
+            "c00c72e96b7c53638de314496805076896056f5dc4735e912e798f6167c02bf5"
+          ],
+          "sha256": "c00c72e96b7c53638de314496805076896056f5dc4735e912e798f6167c02bf5",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/bin/ffmpeg-audioshift": {
+          "before": [
+            null,
+            "4d9618c0a5010aa8cc6be386b9460b80b052c24611a77e3130c5859f5d333c5a"
+          ],
+          "sha256": "4d9618c0a5010aa8cc6be386b9460b80b052c24611a77e3130c5859f5d333c5a",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/core.so": {
+          "before": [
+            null,
+            "b1491e7d2221ee34c23f868090b04c6db1be9e6faa032a91da3746682c3460ca"
+          ],
+          "sha256": "b1491e7d2221ee34c23f868090b04c6db1be9e6faa032a91da3746682c3460ca",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/dmram.py": {
+          "before": [
+            null,
+            "c2c0d69c4d5791fa61af9c0c5980f85a656d7c63ce0ced9ec276582d2c0bfeb2"
+          ],
+          "sha256": "c2c0d69c4d5791fa61af9c0c5980f85a656d7c63ce0ced9ec276582d2c0bfeb2",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/dmram.so": {
+          "before": [
+            null,
+            "9082298f036e5340d51881df8c9686c8c5ff9c85ba0548f4cbc6213eeedd431d"
+          ],
+          "sha256": "9082298f036e5340d51881df8c9686c8c5ff9c85ba0548f4cbc6213eeedd431d",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/keymap.xml": {
+          "before": [
+            null,
+            "10a0f5a5cfd92958d5d12310eed25ba92e9d20bcde004bf4b2b35a586469146d"
+          ],
+          "sha256": "10a0f5a5cfd92958d5d12310eed25ba92e9d20bcde004bf4b2b35a586469146d",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/onlineepg.so": {
+          "before": [
+            null,
+            "ef84999bbeea881a86a7197970131bd16bd98c51ef1d3aa5c03897a9a2201cf6"
+          ],
+          "sha256": "ef84999bbeea881a86a7197970131bd16bd98c51ef1d3aa5c03897a9a2201cf6",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/plugin.png": {
+          "before": [
+            null,
+            "07a8ea42928ff3daed36688f5ab5961e2c022417069715dc03807394d7279403"
+          ],
+          "sha256": "07a8ea42928ff3daed36688f5ab5961e2c022417069715dc03807394d7279403",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/plugin.py": {
+          "before": [
+            null,
+            "524c7c04cd77909098768d894fe98fef79899a8715f6bbaf1d0eb51671403135"
+          ],
+          "sha256": "bbc64af0b8a4d5d0e90d5a71e55c63a69857f21599150fb449e5998693add768",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/plugin.pyc": {
+          "before": [
+            null,
+            "dbc0b1cf1f1c324e7c83205eedb62488b4b915a121de27864cbb06d2ee50d255",
+            "6e9db9cccde306256353b159240ce06b5c6e0a481f90a530c044a4d467b62bd7"
+          ],
+          "sha256": "2dc03389d8753b53603fc1e75d64e6a2d042dbb62759b850100dc8b94659ba67",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/qrcodegen.so": {
+          "before": [
+            null,
+            "675942b6e20fc31747200f99d8e46f6e25990cfc371313789be20160848ad865"
+          ],
+          "sha256": "675942b6e20fc31747200f99d8e46f6e25990cfc371313789be20160848ad865",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/stream_manifest.json": {
+          "before": [
+            null,
+            "d7e68f7e925502fe900d9b7516ad26d396bc57cffaeca4626fc4054a83d42a8a"
+          ],
+          "sha256": "d7e68f7e925502fe900d9b7516ad26d396bc57cffaeca4626fc4054a83d42a8a",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/tsring.so": {
+          "before": [
+            null,
+            "90ab51ebe102e6b581dd2d9c72225bd6792e7a08e30ffa3dbd6b3ae1e8be3786"
+          ],
+          "sha256": "90ab51ebe102e6b581dd2d9c72225bd6792e7a08e30ffa3dbd6b3ae1e8be3786",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/tsring_run.py": {
+          "before": [
+            null,
+            "dd4843ccceb27d5978edf43b8a4919791da2c51cb20ef6a46fedd1cc9e20a9b7"
+          ],
+          "sha256": "dd4843ccceb27d5978edf43b8a4919791da2c51cb20ef6a46fedd1cc9e20a9b7",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/webui.py": {
+          "before": [
+            null,
+            "40b111fb1034035232a23c35290d4fbccef82fc9e486a8b90170584a740f2d35"
+          ],
+          "sha256": "40b111fb1034035232a23c35290d4fbccef82fc9e486a8b90170584a740f2d35",
+          "mode": 493
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_assets.py": {
+          "before": [
+            null
+          ],
+          "sha256": "99d44cc6269a4736cd0011a7686cd2be15fdce7365197177c297569467b9f3ad",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_assets.pyc": {
+          "before": [
+            null
+          ],
+          "sha256": "fa04f749d08aaf1fa6261f4bf3671ee79b6baa6b4002d4e92f7df27488ee2b3c",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_async_control.py": {
+          "before": [
+            null,
+            "fe81d16c2490cc50271a9707365d4f9df11861995db34e669a2b87a803c5fc53"
+          ],
+          "sha256": "fe81d16c2490cc50271a9707365d4f9df11861995db34e669a2b87a803c5fc53",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_async_control.pyc": {
+          "before": [
+            null,
+            "5afeefd21e1818e364fb6e188142ad3fa53ccf2464af45c4dc50178b5444b640",
+            "1610032805c1f3c9e20e301a56cb784655187aa28403ee11d78f69b2e409069d"
+          ],
+          "sha256": "5afeefd21e1818e364fb6e188142ad3fa53ccf2464af45c4dc50178b5444b640",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_audio_duck.py": {
+          "before": [
+            null,
+            "391afc5190d875438bbd1450012bc962ac9800becfd30870400688b676ef615f"
+          ],
+          "sha256": "391afc5190d875438bbd1450012bc962ac9800becfd30870400688b676ef615f",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_audio_duck.pyc": {
+          "before": [
+            null,
+            "660353385092607e3ff67a68acdface4e37c5a341cf380bb119906642501f0c4",
+            "255aa722f15ef1e11d063d6bf85995b7e44eed84023914c9617d97128a46d729"
+          ],
+          "sha256": "660353385092607e3ff67a68acdface4e37c5a341cf380bb119906642501f0c4",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_light_ui.py": {
+          "before": [
+            null,
+            "2e69d7ec3ec4e4f8753150dfae5a7f1a5b0f4587dff03ae980dbfaad80c6a216"
+          ],
+          "sha256": "2e69d7ec3ec4e4f8753150dfae5a7f1a5b0f4587dff03ae980dbfaad80c6a216",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_light_ui.pyc": {
+          "before": [
+            null,
+            "ccb402a08ac590c9131ee96b8f5b1ffed0fec085633c34366febb9f4f545b165",
+            "797324fe5b876090f17658833353d199dbe4ba536b3ec9fa981f01ede0a238d2"
+          ],
+          "sha256": "ccb402a08ac590c9131ee96b8f5b1ffed0fec085633c34366febb9f4f545b165",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_video_delay.py": {
+          "before": [
+            null,
+            "ee60d91d13a0c30630036cce6da0e4a2645fdc1df0bf67b9e435eda4a7c537ea"
+          ],
+          "sha256": "ee60d91d13a0c30630036cce6da0e4a2645fdc1df0bf67b9e435eda4a7c537ea",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/AudioShift/xc_video_delay.pyc": {
+          "before": [
+            null,
+            "96e342ce7b5dff01d5c5b1195028b06dd9cbb6f727f68add0155241ddf45fd3d",
+            "853b2e17b722c35c86f8cfa552a7009ab434851c48c696a146dadd6389f32133"
+          ],
+          "sha256": "96e342ce7b5dff01d5c5b1195028b06dd9cbb6f727f68add0155241ddf45fd3d",
+          "mode": 420
+        },
+        "/usr/lib/gtcombo/gt-audioshift-video-delay.py": {
+          "before": [
+            null,
+            "448063c0e3080bc7aeb1cc4522a389300f660eca6e1f0c9c9bac459a60436858",
+            "49b6e32a9042dbef4124299b9d9f71401cbf1d7b03317b540e57c8b19f13d6ce"
+          ],
+          "sha256": "448063c0e3080bc7aeb1cc4522a389300f660eca6e1f0c9c9bac459a60436858",
+          "mode": 420
+        },
+        "/usr/lib/gtcombo/gt-audioshift-video-delay.pyc": {
+          "before": [
+            null,
+            "9d8625278b79e39080aa2c2f5a34b0edf8a96e6261d5ffe1bd63026ae80dfc18",
+            "23de330958693465313077e87b823432648574be337bcce3b78eb0329fcd298f"
+          ],
+          "sha256": "c927c7124c979cf038a7d2c593efc61a876aff463c18024563538ce6bfe1989a",
+          "mode": 420
+        }
+      },
+      "checks": [
+        {
+          "type": "sha256",
+          "path": "/etc/asound.conf",
+          "bytes": 1197,
+          "sha256": "6ffd9490d8e82c29968220050ede9cbc3c5d4aa55141c3cd120582c2582244a2"
+        },
+        {
+          "type": "sha256",
+          "path": "/usr/lib/gtcombo/gt-native-dispatch.py",
+          "bytes": 3164,
+          "sha256": "7710b271f08a0693dad91ec45c98e7192b06bd8abaa8ed309356302510b6d3c4"
+        }
+      ]
     }
   ]
 }
