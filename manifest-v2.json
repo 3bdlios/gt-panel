@@ -401,6 +401,67 @@
           "sha256": "7710b271f08a0693dad91ec45c98e7192b06bd8abaa8ed309356302510b6d3c4"
         }
       ]
+    },
+    {
+      "id": "gt-screenshot-fix",
+      "title": "Screenshot Fix",
+      "category": "Fixes",
+      "version": "1.1.0",
+      "description": "اصلاح التقاط الشاشة",
+      "warning": "لنسخ XCONN وGTMedia المعدلة على OpenATV 8.0.1. يعيد البنل تشغيل الواجهة بعد التثبيت ويحفظ نسخة رجوع.",
+      "format": "ipk",
+      "action": "repair",
+      "min_engine": 2,
+      "compatibility": {
+        "model": [
+          "XCONN",
+          "GTMedia GT Combo"
+        ],
+        "image": [
+          "openatv"
+        ],
+        "version": [
+          "8.0.1.20261007"
+        ],
+        "python": [
+          "3.14"
+        ]
+      },
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/enigma2-plugin-extensions-gtscreenshot_1.1.0_all.ipk",
+      "size": 3056,
+      "sha256": "a1fb45608cf2506593edc4f66787adcb8dcdf279d7ceb831ad166bd46ea6ab4b",
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTScreenshot/__init__.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTScreenshot/plugin.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTScreenshot/capture.py"
+      ],
+      "targets": {
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTScreenshot/__init__.py": {
+          "before": [
+            null,
+            "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+          ],
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTScreenshot/plugin.py": {
+          "before": [
+            null,
+            "42712e7c2be55b5f695942455acd6b35432e57a937847947a4ea831f289a9f41"
+          ],
+          "sha256": "cef1fe8fc1fb34d098da9e0be12fff718dfbff2f4f125daf09a8aa4f429bacdc",
+          "mode": 420
+        },
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTScreenshot/capture.py": {
+          "before": [
+            null,
+            "e8a99691d3252ff296e76cae8b41027a9455936097f9a5ef7e5a92410aa1a69f"
+          ],
+          "sha256": "84f1c562014664d8de3a954beaff74d9277b4b8598044d45f3f12e4004df6351",
+          "mode": 493
+        }
+      },
+      "checks": []
     }
   ]
 }
