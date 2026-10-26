@@ -465,10 +465,10 @@
     },
     {
       "id": "gt-panel-updater",
-      "title": "Update GT Panel to 2.2.0",
+      "title": "Update GT Panel to 2.2.1",
       "category": "Updates",
-      "version": "2.2.0",
-      "description": "Update GT Panel to 2.2.0",
+      "version": "2.2.1",
+      "description": "Update GT Panel to 2.2.1",
       "warning": "",
       "format": "tar.gz",
       "action": "files",
@@ -487,9 +487,9 @@
           "3.14"
         ]
       },
-      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gt-panel-update-2.2.0.tar.gz",
-      "size": 2433,
-      "sha256": "61aff30ea2da6f5f3bd400e45e1d33deed7bcfd10a0c973a029e1b2449ff5993",
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gt-panel-update-2.2.1.tar.gz",
+      "size": 2432,
+      "sha256": "5b130304f570c657934b4208d1d62a560309e3860b607e227df453cdab083494",
       "files": [
         "/usr/lib/enigma2/python/Plugins/Extensions/GTPanelUpdater/__init__.py",
         "/usr/lib/enigma2/python/Plugins/Extensions/GTPanelUpdater/plugin.py",

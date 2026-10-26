@@ -1,10 +1,10 @@
-"""Manual, pinned GT Panel update. Never runs on session startup."""
+"""Pinned one-time GT Panel update after GUI startup."""
 import hashlib,os,shutil,subprocess,tempfile,time
 from pathlib import Path
 from urllib.request import urlopen,Request
-URL='https://raw.githubusercontent.com/3bdlios/gt-panel/main/dist/enigma2-plugin-extensions-gtpanel_2.2.0_all.ipk'
-SHA256='3c5a3cec6c6c435b789cff4bd80c7d1f30c231189fba8b66eada0ce7bbc7ac2f'
-SIZE=28940
+URL='https://raw.githubusercontent.com/3bdlios/gt-panel/main/dist/enigma2-plugin-extensions-gtpanel_2.2.1_all.ipk'
+SHA256='b7e6cdf3a3a015c906c2b8b623a352ba41e458f725c4c38920c6b42039235455'
+SIZE=29300
 
 def install():
     if os.geteuid()!=0:raise RuntimeError('التحديث يتطلب صلاحيات النظام')
@@ -33,7 +33,7 @@ def install():
         if package.exists():package.unlink()
 
 _STATE=Path('/var/lib/gt-panel-updater')
-_TAG='2.2.0-'+SHA256[:12]
+_TAG='2.2.1-'+SHA256[:12]
 def finished():
     return (_STATE/('done-'+_TAG)).is_file()
 
