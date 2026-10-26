@@ -47,7 +47,7 @@ class GTPanel(Screen):
     def __init__(self,session):
         self.skin,self.panel_scale=layout(getDesktop(0).size().width())
         Screen.__init__(self,session)
-        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.2.0',
+        labels={'brand':'GT PANEL','subtitle':'Your receiver. Repaired, expanded, personalised.', 'badge':'REPAIR HUB  /  2.2.1',
                 'connection':'GitHub catalog', 'rail_title':'GT ENIGMA2', 'rail_copy':'DOWNLOADS\n& REPAIRS\n\nOne place for\nyour receiver.',
                 'device':'Checking device…','section':'Explore your panel','status':'Loading the GitHub catalog…',
                 'detail_tag':'BUILT FOR YOUR RECEIVER','detail_title':'Choose a category','detail':'Review compatibility and changes before installing.\n\nBackups are created before files are replaced.',
@@ -86,6 +86,7 @@ class GTPanel(Screen):
     def load(self):
         def work():
             with open(CONFIG if os.path.isfile(CONFIG) else os.path.join(HERE,'repository.json')) as f:config=json.load(f)
+            config=core.catalog_config(config)
             doc=core.validate(json.loads(core.fetch(config['manifest_url'],config['repository'],512*1024,True).decode('utf-8')))
             return config,doc
         deferToThread(work).addCallbacks(self.loaded,self.error)
