@@ -95,6 +95,39 @@
         }
       },
       "checks": []
+    },
+    {
+      "id": "gt-panel-updater",
+      "title": "تحديث GT Panel إلى 2.2.0",
+      "category": "Updates",
+      "version": "2.2.0",
+      "description": "يحدّث البنل الحالي تلقائيًا إلى الإصدار 2.2.0، ويضيف دعم إصلاح ستريم ريلي وصورة IPTV. يبدأ التحديث بعد إعادة الواجهة ويحفظ نسخة من البنل السابق.",
+      "warning": "تُعاد الواجهة تلقائيًا لتطبيق التحديث. تُحدّث نسخة GT Panel الحالية ولا تُضاف نسخة ثانية. إذا فشل التنزيل يمكن فتح أداة تحديث GT Panel لإعادة المحاولة.",
+      "format": "tar.gz",
+      "action": "files",
+      "compatibility": {
+        "model": [
+          "XCONN",
+          "GTMedia GT Combo"
+        ],
+        "image": [
+          "openatv"
+        ],
+        "version": [
+          "8.0.1.20261007"
+        ],
+        "python": [
+          "3.14"
+        ]
+      },
+      "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/gt-panel-update-2.2.0.tar.gz",
+      "size": 2433,
+      "sha256": "61aff30ea2da6f5f3bd400e45e1d33deed7bcfd10a0c973a029e1b2449ff5993",
+      "files": [
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTPanelUpdater/__init__.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTPanelUpdater/plugin.py",
+        "/usr/lib/enigma2/python/Plugins/Extensions/GTPanelUpdater/updater.py"
+      ]
     }
   ]
 }
