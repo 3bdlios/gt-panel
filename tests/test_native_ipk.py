@@ -32,7 +32,7 @@ class NativeIPKTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d,patch.object(core,'STATE',d),patch.object(core,'facts',return_value=self.device),patch.object(native_ipk.platform,'machine',return_value='aarch64'),patch.object(native_ipk.shutil,'which',return_value='/usr/bin/opkg'),patch.object(native_ipk.subprocess,'run',return_value=types.SimpleNamespace(returncode=0)) as run:
    backup=core.install(self.item,{'__reviewed_native_ipk__':self.data},True)
    self.assertEqual(backup,'/etc/xc-streamrelay-backups')
-   args=run.call_args.args[0];self.assertEqual(args[:2],['/usr/bin/opkg','install']);self.assertNotIn('shell',run.call_args.kwargs)
+   args=run.call_args.args[0];self.assertEqual(args[:3],['/usr/bin/opkg','--force-reinstall','install']);self.assertNotIn('shell',run.call_args.kwargs)
    self.assertFalse((pathlib.Path(d)/'install.lock').exists())
    self.assertEqual(list(pathlib.Path(d).rglob('*.ipk')),[])
    self.assertEqual(json.loads(next(pathlib.Path(d).rglob('native-install.json')).read_text())['status'],'installed')
