@@ -58,7 +58,7 @@ def install(item,payload,confirmed=False):
         with open(log,'wb') as out:
             os.chmod(log,0o600)
             try:
-                result=subprocess.run([opkg,'install',package],stdin=subprocess.DEVNULL,stdout=out,stderr=subprocess.STDOUT,timeout=180,check=False)
+                result=subprocess.run([opkg,'--force-reinstall','install',package],stdin=subprocess.DEVNULL,stdout=out,stderr=subprocess.STDOUT,timeout=180,check=False)
             except subprocess.TimeoutExpired:
                 record['status']='timeout';raise SafetyError('Native installation timed out; see '+log)
         if result.returncode:
