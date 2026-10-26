@@ -240,3 +240,14 @@ def restore(folder):
     os.close(fd)
     try: return _restore(folder)
     finally: os.unlink(lock)
+
+
+def catalog_config(config):
+    """Migrate only the official legacy catalog; preserve custom repositories."""
+    result=dict(config)
+    prefix='https://raw.githubusercontent.com/3bdlios/gt-panel/'
+    if result.get('repository')=='3bdlios/gt-panel' and result.get('manifest_url','').startswith(prefix):
+        suffix=result['manifest_url'][len(prefix):]
+        if suffix in {branch+'/'+location for branch in ('main','feature/ipk-one-click','refs/heads/main','refs/heads/feature/ipk-one-click') for location in ('manifest-v2.json','repository/manifest-v2.json')}:
+            result['manifest_url']=prefix+'main/manifest-v3.json'
+    return result
