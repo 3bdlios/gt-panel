@@ -465,11 +465,11 @@
     },
     {
       "id": "gt-panel-updater",
-      "title": "تحديث GT Panel إلى 2.2.0",
+      "title": "Update GT Panel to 2.2.0",
       "category": "Updates",
       "version": "2.2.0",
-      "description": "يحدّث البنل الحالي تلقائيًا إلى الإصدار 2.2.0، ويضيف دعم إصلاح ستريم ريلي وصورة IPTV. يبدأ التحديث بعد إعادة الواجهة ويحفظ نسخة من البنل السابق.",
-      "warning": "تُعاد الواجهة تلقائيًا لتطبيق التحديث. تُحدّث نسخة GT Panel الحالية ولا تُضاف نسخة ثانية. إذا فشل التنزيل يمكن فتح أداة تحديث GT Panel لإعادة المحاولة.",
+      "description": "Update GT Panel to 2.2.0",
+      "warning": "",
       "format": "tar.gz",
       "action": "files",
       "compatibility": {
