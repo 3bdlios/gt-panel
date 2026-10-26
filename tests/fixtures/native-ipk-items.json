@@ -1,0 +1,71 @@
+[
+  {
+    "id": "xc-streamrelay-fix",
+    "title": "إصلاح ستريم ريلي",
+    "category": "Fixes",
+    "version": "1.1.0",
+    "description": "إصلاح تشغيل قنوات ستريم ريلي والصوت عبر المشغل الأصلي، مع ضبط الإعدادات اللازمة للكامة المتوافقة وتحسين بدء الصوت. تعاد الواجهة تلقائيًا بعد التثبيت.",
+    "warning": "للنسخ المعدلة من XCONN وGTMedia على OpenATV فقط. يتطلب كامة تدعم ستريم ريلي؛ لا يضيف اشتراكًا أو مفاتيح.",
+    "format": "ipk",
+    "action": "native-ipk",
+    "min_engine": 3,
+    "compatibility": {
+      "model": [
+        "XCONN",
+        "GTMedia GT Combo"
+      ],
+      "image": [
+        "openatv"
+      ],
+      "version": [
+        "8.0.1.20261007"
+      ],
+      "python": [
+        "3.14"
+      ]
+    },
+    "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/enigma2-plugin-systemplugins-xcstreamrelay_1.1.0_all.ipk",
+    "size": 9590,
+    "sha256": "84bb06d7a7d2c037d7f1e35cfa9536587bdb3cb6dd4b3dd244170c5f1af6da97",
+    "files": [
+      "/etc/gtcombo/native-streamrelay.enabled",
+      "/usr/lib/enigma2/python/Plugins/SystemPlugins/GTNativeRelay/__init__.py",
+      "/usr/lib/enigma2/python/Plugins/SystemPlugins/GTNativeRelay/plugin.py",
+      "/usr/lib/gtcombo/gt-native-relay.py",
+      "/usr/lib/gtcombo/libgt-relay-audio-input.so",
+      "/usr/lib/gtcombo/xc-streamrelay-configure.py"
+    ]
+  },
+  {
+    "id": "xc-iptv-video-fix",
+    "title": "إصلاح صورة IPTV",
+    "category": "Fixes",
+    "version": "0.3.0",
+    "description": "إصلاح الصوت دون صورة في قنوات IPTV بترميز HEVC/H.265، وتحسين بدء مفكك الفيديو مع دعم H264. تعاد الواجهة تلقائيًا بعد التثبيت.",
+    "warning": "للنسخ المعدلة من XCONN وGTMedia على OpenATV مع مخرج صوت Amlogic الموجود مسبقًا. اختُبر على XCONN؛ لا يضمن كل الترميزات أو إصلاح روابط المصدر المتوقفة.",
+    "format": "ipk",
+    "action": "native-ipk",
+    "min_engine": 3,
+    "compatibility": {
+      "model": [
+        "XCONN",
+        "GTMedia GT Combo"
+      ],
+      "image": [
+        "openatv"
+      ],
+      "version": [
+        "8.0.1.20261007"
+      ],
+      "python": [
+        "3.14"
+      ]
+    },
+    "url": "https://raw.githubusercontent.com/3bdlios/gt-panel/main/repository/enigma2-plugin-systemplugins-xcamlvideo_0.3.0_all.ipk",
+    "size": 7954,
+    "sha256": "19a7d1a55c82b9e9697858a0aea81afc76ef06c707abaf1a82de56bff4cbe981",
+    "files": [
+      "/usr/lib/gstreamer-1.0/libgstxcamlvideo.so"
+    ]
+  }
+]
