@@ -70,20 +70,25 @@ def fetch(url, repo, limit, manifest=False):
     finally: response.close()
 
 def validate(doc):
-    if doc.get('schema') not in (1,2) or not isinstance(doc.get('items'), list) or len(doc['items']) > 100:
+    if doc.get('schema') not in (1,2,3) or not isinstance(doc.get('items'), list) or len(doc['items']) > 100:
         raise SafetyError('Invalid manifest')
     ids = set()
     for i in doc['items']:
         if not re.match(r'^[a-z0-9][a-z0-9-]{0,63}$', i.get('id','')) or i['id'] in ids: raise SafetyError('Invalid/duplicate item id')
         ids.add(i['id'])
         if i.get('category') not in CATEGORIES: raise SafetyError('Invalid category')
+        if i.get('format', 'tar.gz') not in ('tar.gz', 'ipk'): raise SafetyError('Invalid package format')
         if not re.match(r'^[0-9a-f]{64}$', i.get('sha256','')): raise SafetyError('Missing SHA256')
         if type(i.get('size')) is not int or not 0 < i['size'] <= 16*1024*1024: raise SafetyError('Invalid size')
         if not isinstance(i.get('files'), list) or not 0 < len(i['files']) <= 200: raise SafetyError('Invalid file inventory')
         if len(set(i['files'])) != len(i['files']): raise SafetyError('Duplicate files')
-        from . import repairs
-        repairs.validate(i)
-        for p in i['files']: safe_path(p, i.get('action')=='repair')
+        if i.get('action') == 'native-ipk':
+            from . import native_ipk
+            native_ipk.validate(i)
+        else:
+            from . import repairs
+            repairs.validate(i)
+            for p in i['files']: safe_path(p, i.get('action')=='repair')
         for k in ('model','image','version','python'):
             if not isinstance(i.get('compatibility',{}).get(k), list) or not i['compatibility'][k]: raise SafetyError('Missing compatibility ' + k)
     return doc
@@ -111,6 +116,9 @@ def safe_path(path, repair=False):
     return path
 
 def prepare(item, repo, device):
+    if item.get("action") == "native-ipk":
+        from . import native_ipk
+        return native_ipk.prepare(item,repo,device)
     if not compatible(item, device): raise SafetyError('Item incompatible with local device identity')
     from . import repairs
     repairs.preflight(item)
@@ -120,6 +128,15 @@ def prepare(item, repo, device):
     try:
         archive = os.path.join(tmp, 'bundle.tar.gz')
         with open(archive,'wb') as f: f.write(data)
+        if item.get('format') == 'ipk':
+            from . import ipk
+            payload = ipk.payload(data, set(item['files']))
+            for path in payload:
+                safe_path(path, item.get('action') == 'repair')
+            repairs.preflight(item, payload)
+            return payload
+        if item.get('format', 'tar.gz') != 'tar.gz':
+            raise SafetyError('Unsupported package format')
         payload = {}
         with tarfile.open(archive,'r:gz') as tf:
             total = 0
@@ -136,6 +153,9 @@ def prepare(item, repo, device):
     finally: shutil.rmtree(tmp)
 
 def install(item, payload, confirmed=False):
+    if item.get("action") == "native-ipk":
+        from . import native_ipk
+        return native_ipk.install(item,payload,confirmed)
     if confirmed is not True: raise SafetyError('Explicit confirmation required')
     if set(payload) != set(item['files']): raise SafetyError('Inventory changed')
     for p in payload: safe_path(p, item.get('action')=='repair')
