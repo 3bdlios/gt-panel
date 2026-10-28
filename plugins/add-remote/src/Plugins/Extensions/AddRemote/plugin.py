@@ -322,7 +322,7 @@ class AddRemote(Screen):
                 return
             action = choice[1]
             if action == 'about':
-                self.info('Add Remote 0.3.1\n\nFares3nzi\nhttps://t.me/fares3nzi\n\nAutomatic IR waveform capture.\nFree software — MIT license.\nHardware compatibility varies.')
+                self.info('Add Remote 0.3.2\n\nFares3nzi\nhttps://t.me/fares3nzi\n\nAutomatic IR waveform capture.\nFree software — MIT license.\nHardware compatibility varies.')
             elif action == 'disable':
                 self.data['active'] = None
                 self.save(activate=False)

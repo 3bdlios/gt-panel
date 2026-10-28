@@ -7,13 +7,12 @@ import hashlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTROL = '''Package: enigma2-plugin-extensions-addremote
-Version: 0.3.1
+Version: 0.3.2
 Architecture: all
 Maintainer: فارس
 Section: extra
 Priority: optional
 Depends: enigma2, python3-core, python3-json
-Recommends: python3-evdev
 Description: Add Remote decoded IR and optional Bluetooth HID profiles
 '''
 
@@ -35,7 +34,7 @@ def build():
     entries['./usr/share/doc/addremote/README.md'] = (ROOT / 'README.md').read_bytes()
     entries['./usr/share/doc/addremote/LICENSE'] = (ROOT / 'LICENSE').read_bytes()
     members = {'debian-binary': b'2.0\n', 'control.tar.gz': archive({'./control': CONTROL.encode()}), 'data.tar.gz': archive(entries)}
-    output = ROOT.parent / 'enigma2-plugin-extensions-addremote_0.3.1_all.ipk'
+    output = ROOT.parent / 'enigma2-plugin-extensions-addremote_0.3.2_all.ipk'
     with output.open('wb') as f:
         f.write(b'!<arch>\n')
         for name, data in members.items():
