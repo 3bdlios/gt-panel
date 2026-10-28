@@ -1,0 +1,54 @@
+{
+  "id": "add-remote",
+  "title": "Add Remote — تعلم ريموت IR",
+  "category": "Plugins",
+  "version": "0.3.1",
+  "description": "تعلم تلقائي لبصمات أزرار IR، ملفات ريموت متعددة، حفظ وتفعيل، ضغط مطول وتكرار NEC، وواجهة كاملة الشاشة. Fares3nzi.",
+  "warning": "يتطلب مستقبل LIRC يدعم قراءة IR الخام. لا يضمن كل البروتوكولات؛ لا يغير إعدادات المستقبل ويحافظ على ملفات الريموت. GT Panel يعيد تشغيل الواجهة بعد التثبيت. Bluetooth اختياري ويتطلب python3-evdev مثبتًا من مستودع الصورة.",
+  "format": "ipk",
+  "action": "files",
+  "min_engine": 2,
+  "compatibility": {
+    "model": [
+      "XCONN",
+      "GTMedia GT Combo"
+    ],
+    "image": [
+      "openatv"
+    ],
+    "version": [
+      "8.0.1.20261007"
+    ],
+    "python": [
+      "3.14"
+    ]
+  },
+  "url": "https://github.com/3bdlios/gt-panel/releases/download/add-remote-v0.3.1/enigma2-plugin-extensions-addremote_0.3.1_all-panel.ipk",
+  "size": 23972,
+  "sha256": "c05e30d78fcf4dfa65c0d899f2edc3833efd5d065898a9241acfe90bc8d3a2dd",
+  "files": [
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/__init__.py",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/down.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/expand.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/forward.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/left.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/mail.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/next.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/pause.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/play.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/power.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/previous.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/record.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/rewind.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/right.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/stop.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/assets/up.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/autoir.py",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/core.py",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/inputs.py",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/keyflow.py",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/layout.py",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/plugin.png",
+    "/usr/lib/enigma2/python/Plugins/Extensions/AddRemote/plugin.py"
+  ]
+}
