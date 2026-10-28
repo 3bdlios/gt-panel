@@ -6,3 +6,5 @@
 - Full existing GT Panel suite: 35 tests, 32 passed; 3 failures/errors already reproduce on unmodified commit 6709a4f (legacy repair checks/bundle hash and VLC catalog fixture). No changes to that functionality or engine policy were made.
 - Installer shell syntax passed; it downloads the pinned standard IPK via HTTPS, checks SHA256, and invokes opkg. No automatic GUI restart.
 - Receiver validation: standard 0.3.1 installed on two local receivers; IR waveform and NEC hold events observed, active remote operated within plugin; native menu verified About without Arabic branding. Device profiles and credentials are not part of the release.
+
+Publication scope was narrowed at the user request to a standalone installer only. No Add Remote entry was added to any GT Panel manifest, no engine code or updater was changed, and the unused panel package/item/integration fixture were removed before catalog publication.
